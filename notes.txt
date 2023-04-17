@@ -1,0 +1,34 @@
+questions?:
+
++function (req, res, next) {} ???
+
++_id, id what is the difference
+
+===================================================
+
+Notes to the assignment:
+
+first, read the assignment
+
+create => mockups app.visyly.ai
+    for landing page etc.
+        slide show
+        sections, typeology
+
+create database, six tables+- => mongodb
+    structure, make ERD and send it to the teacher for approval
+
+    users 
+        id, name, password, email, profile
+
+    customers
+        fields
+
+    sales
+        id, customer_id, money 
+
+    tickets
+
+    events
+
+    places, museum, stadium
