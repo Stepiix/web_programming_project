@@ -12,9 +12,11 @@ const { log } = require('console');
 
 mongoose.Promise = global.Promise
 
-mongoose.connect('mongodb://localhost/items')
+mongoose.connect('mongodb://localhost/events')
   .then(()=> console.log(' connected to DB!'))
   .catch(()=> console.log(' error connecting to DB!'))
+
+  
 
 var app = express();
 
