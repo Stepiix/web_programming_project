@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create Item</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Create New Item</h1>
+      <form action="/items/create" method="post">
+        <table>
+          <tbody>
+            <tr>
+              <td>Name</td>
+              <td><input type="text" name="name" /></td>
+            </tr>
+            <tr>
+              <td>Quantity</td>
+              <td><input type="number" name="quantity" /></td>
+            </tr>
+            <tr>
+              <td colspan="2"><button type="submit">Save</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+    <h3><a href="/items">Ver todos os items</a></h3>
+  </body>
+</html>

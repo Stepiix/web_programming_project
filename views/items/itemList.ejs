@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Item List</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Item List</h1>
+      <% if(items.length>0) { %>
+        <table class="list-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Id</th>
+              <th>Item Name</th>
+              <th>Detalhes</th>
+              <th>Editar</th>
+              <th>Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <% for(var i=0; i<items.length;i++) { %>
+              <tr>
+                <td> <%=i%> </td>
+                <td> <%=items[i]._id%></a></td>
+                <td> <%= items[i].name%></a></td>
+                <td><a href="/items/show/<%= items[i]._id%> "> Ver </td>
+                <td><a href="/items/edit/<%= items[i]._id%> "> Editar </a></td>
+                <td><a href="/items/delete/<%= items[i]._id%> "> Eliminar </a></td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      <% } else { %>
+        <div>No employees found.</div>
+      <% } %>
+    </div>
+    <h3><a href="/items/create">Criar novo Item</a></h3>
+  </body>
+</html>

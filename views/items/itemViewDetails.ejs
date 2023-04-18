@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Item Detail</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Item Detail</h1>
+      <table>
+        <tbody>
+        <tr>
+            <td>Id</td>
+            <td>:</td>
+            <td><%= item._id %></td>
+            </tr>
+        <tr>
+            <td>Name</td>
+            <td>:</td>
+            <td><%= item.name %></td>
+          </tr>
+          
+          <tr>
+            <td>Quantity</td>
+            <td>:</td>
+            <td>$<%= item.quantity %> </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h3><a href="/items">Ver todos os item</a></h3>
+  </body>
+</html>
+
