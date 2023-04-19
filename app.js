@@ -5,14 +5,15 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var mongoose = require('mongoose');
-//this is how to use git
+
 var indexRouter = require('./routes/index');
 var itemsRouter = require('./routes/items');
 const { log } = require('console');
 
 mongoose.Promise = global.Promise
 
-mongoose.connect('mongodb://localhost/items')
+mongoose.connect('mongodb+srv://demo:6uCdbSDByPH4ZaFr@cluster0.rlmhow5.mongodb.net/?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true} ) //find here https://gitlab.estg.ipp.pt/paw/exemplos-pr-ticos/fp6/-/blob/master/app.js
+// mongoose.connect('mongodb://localhost/items')
   .then(()=> console.log(' connected to DB!'))
   .catch(()=> console.log(' error connecting to DB!'))
 
