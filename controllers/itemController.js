@@ -3,7 +3,7 @@ var Item = require('../models/item');
 
 var itemController = {};
 
-// mostra todos items 
+// Shows all the elements
 itemController.showAll = function(req, res){
     Item.find({}).exec((err, dbitems)=>{
         if (err){
@@ -16,7 +16,7 @@ itemController.showAll = function(req, res){
     })
 }
 
-// mostra 1 item por id
+// Show 1 item by id
 itemController.show = function(req, res){
     Item.findOne({_id:req.params.id}).exec((err, dbitem)=>{
         if (err){
@@ -28,12 +28,12 @@ itemController.show = function(req, res){
     })
 }
 
-// form para criar 1 item
+// Form to create 1 item
 itemController.formCreate = function(req,res){
     res.render('items/createForm');
 }
 
-// cria 1 item como resposta a um post de um form
+// Create 1 item as a response to POST of a form
 itemController.create = function(req,res){
     var item = new Item(req.body);
     item.save((err)=>{
@@ -46,7 +46,7 @@ itemController.create = function(req,res){
     })
 }
 
-// mostra 1 item para edicao
+// Show 1 item to edit
 itemController.formEdit = function(req, res){
     Item.findOne({_id:req.params.id}).exec((err, dbitem)=>{
         if (err){
@@ -58,7 +58,7 @@ itemController.formEdit = function(req, res){
     })
 }
 
-// edita 1 item como resposta a um post de um form editar
+// Edit 1 item as a response of the edit form
 itemController.edit = function(req,res){
     Item.findByIdAndUpdate(req.body._id, req.body, (err, editedItem)=>{
         if (err){
@@ -70,7 +70,7 @@ itemController.edit = function(req,res){
     } )
 }
 
-// elimina 1 item
+// Eliminate 1 item
 itemController.delete = function(req, res){
     Item.remove({_id:req.params.id}).exec((err)=>{
         if (err){

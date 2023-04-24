@@ -1,41 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Item List</title>
+    <title>Item Detail</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <div class="container">
-      <h1>Item List</h1>
-      <% if(items.length>0) { %>
-        <table class="list-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Id</th>
-              <th>Item Name</th>
-              <th>Detalhes</th>
-              <th>Editar</th>
-              <th>Eliminar</th>
+      <h1>Event Detail</h1>
+      <table>
+        <tbody>
+        <tr>
+            <td>Id</td>
+            <td>:</td>
+            <td><%= item._id %></td>
             </tr>
-          </thead>
-          <tbody>
-
-            <% for(var i=0; i<items.length;i++) { %>
-              <tr>
-                <td> <%=i%> </td>
-                <td> <%=items[i]._id%></a></td>
-                <td> <%= items[i].name%></a></td>
-                <td><a href="/items/show/<%= items[i]._id%> "> Ver </td>
-                <td><a href="/items/edit/<%= items[i]._id%> "> Editar </a></td>
-                <td><a href="/items/delete/<%= items[i]._id%> "> Eliminar </a></td>
-              </tr>
-            <% } %>
-          </tbody>
-        </table>
-      <% } else { %>
-        <div>No employees found.</div>
-      <% } %>
+        <tr>
+            <td>Name</td>
+            <td>:</td>
+            <td><%= item.name %></td>
+          </tr>
+          
+          <tr>
+            <td>Position</td>
+            <td>:</td>
+            <td>$<%= item.position %> </td>
+          </tr>
+          <tr>
+            <td>Price</td>
+            <td>:</td>
+            <td>$<%= item.price %> </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <h3><a href="/items/create">Criar novo Item</a></h3>
+    <h3><a href="/items">Watch all the events</a></h3>
   </body>
 </html>

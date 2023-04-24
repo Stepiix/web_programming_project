@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 
-var EventSchema = new mongoose.Schema({
+var ItemSchema = new mongoose.Schema({
     name: String,
-    address: String,
+    position: String,
     price: Number
 });
 
-module.exports = mongoose.model('Event', EventSchema);
+module.exports = mongoose.model('Item', ItemSchema);
