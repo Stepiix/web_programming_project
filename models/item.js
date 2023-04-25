@@ -9,4 +9,4 @@ var ItemSchema = new mongoose.Schema({
     e_structure: String  //If seated, ID of the eventStructure
 });
 
-module.exports = mongoose.model('Item', ItemSchema);
+module.exports = mongoose.model('Event', ItemSchema);
