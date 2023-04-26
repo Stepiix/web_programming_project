@@ -12,18 +12,15 @@
           <tbody>
           <tr>
               <td>Id</td>
-              <td>:</td>
               <!-- Como o id não pode ser alterado usamos o input hidden para o enviar como campo do formulário. -->
-              <td><input type="hidden" name="_id" id="_id" value="<%= item._id %>"><%= item.name %></td>
+              <td><input type="hidden" name="_id" id="_id" value="<%= item._id %>"><%= item._id %></td>
               </tr>
           <tr>
               <td>Name</td>
-              <td>:</td>
               <td><input type="text" name="name" id="name" value="<%= item.name %>"></td>
             </tr>
             <tr>
               <td>Details</td>
-              <td>:</td>
               <td><input type="text" name="quantity" id="quantity" value="<%= item.details %>"></td>
             </tr>
             <tr>
@@ -32,11 +29,11 @@
             </tr>
             <tr>
               <td>Place</td>
-              <td><input type="text" name="place" id="place" value="<%= item.place_id %>" /></td>
+              <td><input type="text" name="place_id" id="place_id" value="<%= item.place_id %>" /></td>
             </tr>
             <tr>
               <td>  If the event has seats, please add also the structure</td>
-              <td><input type="radio" name="seated" id="seated" />   <input type="text" name="e_structure" id="e_structure" value="<%= item.e_structure %>" /></td>
+              <td><input type="radio" name="seated" id="seated" /><input type="text" name="e_structure" id="e_structure" value="<%= item.e_structure %>" /></td>
             </tr>
             <tr>
               <td colspan="2"><button type="submit">Edit</button></td>
@@ -45,7 +42,7 @@
         </table>
     </form>
     </div>
-    <h3><a href="/items">Ver todos os item</a></h3>
+    <h3><a href="/items">Watch all the events</a></h3>
   </body>
 </html>
 
