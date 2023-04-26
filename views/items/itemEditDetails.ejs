@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Item Detail</title>
+    <title>Event Detail</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <div class="container">
-      <h1>Item Detail</h1>
+      <h1>Event Detail</h1>
       <form action="/items/edit/<%=item._id%>" method="post">
         <table>
           <tbody>
@@ -21,11 +21,22 @@
               <td>:</td>
               <td><input type="text" name="name" id="name" value="<%= item.name %>"></td>
             </tr>
-            
             <tr>
-              <td>Quantity</td>
+              <td>Details</td>
               <td>:</td>
-              <td><input type="text" name="quantity" id="quantity" value="<%= item.quantity %>"></td>
+              <td><input type="text" name="quantity" id="quantity" value="<%= item.details %>"></td>
+            </tr>
+            <tr>
+              <td>Date</td>
+              <td><input type="date" name="date" id="date" value="<%= item.date %>"/></td>
+            </tr>
+            <tr>
+              <td>Place</td>
+              <td><input type="text" name="place" id="place" value="<%= item.place_id %>" /></td>
+            </tr>
+            <tr>
+              <td>  If the event has seats, please add also the structure</td>
+              <td><input type="radio" name="seated" id="seated" />   <input type="text" name="e_structure" id="e_structure" value="<%= item.e_structure %>" /></td>
             </tr>
             <tr>
               <td colspan="2"><button type="submit">Edit</button></td>
