@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Create Item</title>
+    <title>Create Event</title>
   </head>
   <body>
     <div class="container">
-      <h1>Create New Item</h1>
+      <h1>Create New Event</h1>
       <form action="/items/create" method="post">
         <table>
           <tbody>
@@ -13,9 +13,21 @@
               <td>Name</td>
               <td><input type="text" name="name" /></td>
             </tr>
+	      <tr>
+              <td>Details</td>
+              <td><input type="text" name="details" /></td>
+            </tr>
             <tr>
-              <td>Quantity</td>
-              <td><input type="number" name="quantity" /></td>
+              <td>Date</td>
+              <td><input type="date" name="date" /></td>
+            </tr>
+            <tr>
+              <td>Place</td>
+              <td><input type="text" name="place" placeholder="Place ID" /></td>
+            </tr>
+            <tr>
+              <td>  If the event has seats, please add also the structure</td>
+              <td><input type="radio" name="seated" />   <input type="text" name="e_structure" placeholder="Structure ID" /></td>
             </tr>
             <tr>
               <td colspan="2"><button type="submit">Save</button></td>
@@ -24,6 +36,6 @@
         </table>
       </form>
     </div>
-    <h3><a href="/items">Ver todos os items</a></h3>
+    <h3><a href="/items">Watch all the events</a></h3>
   </body>
 </html>
