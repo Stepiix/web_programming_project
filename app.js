@@ -1,5 +1,5 @@
 var createError = require('http-errors');
-var express = require('express');
+var express = require('express'); 
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var itemsRouter = require('./routes/items');
+var placesRouter = require('./routes/places');
 const { log } = require('console');
 
 mongoose.Promise = global.Promise
@@ -31,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/items', itemsRouter);
+app.use('/places', placesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
