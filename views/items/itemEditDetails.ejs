@@ -29,7 +29,21 @@
             </tr>
             <tr>
               <td>Place</td>
-              <td><input type="text" name="place_id" id="place_id" value="<%= item.place_id %>" /></td>
+              <td>
+                <% if(places.length>0) { %>
+                  <select id="place_id" name="place_id" >
+                  <% for(var i=0; i<places.length;i++) { %>
+                    <% if (item.place_id == places[i]._id ) { %>
+                      <option value="<%= places[i]._id%>" selected><%= places[i].name%></option>
+                    <% } else { %>
+                      <option value="<%= places[i]._id%>"><%= places[i].name%></option>
+                  <% } } %>
+                  </select>
+                  <td><a href="/places/create">Create new place</a></td>
+                <% } else { %>
+                  <a href="/places/create">Create new place</a>
+                <% } %>
+              </td>
             </tr>
             <tr>
               <td>  If the event has seats, please add also the structure</td>

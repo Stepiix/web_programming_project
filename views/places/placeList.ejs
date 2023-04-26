@@ -11,9 +11,10 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Id</th>
               <th>Place Name</th>
-              <th>Place Address</th>
+              <th>Address</th>
+              <th>Edit</th>
+              <th>Eliminate</th>
             </tr>
           </thead>
           <tbody>
@@ -21,11 +22,10 @@
             <% for(var i=0; i<items.length;i++) { %>
               <tr>
                 <td> <%=i%> </td>
-                <td> <%=items[i]._id%></a></td>
-                <td> <%= items[i].name%></a></td>
-                <td><a href="/items/show/<%= items[i]._id%> "> Ver </td>
-                <td><a href="/items/edit/<%= items[i]._id%> "> Editar </a></td>
-                <td><a href="/items/delete/<%= items[i]._id%> "> Eliminar </a></td>
+                <td> <%= items[i].name%></td>
+                <td> <%= items[i].address%></a></td>
+                <td><a href="/places/edit/<%= items[i]._id%> "> Edit </a></td>
+                <td><a href="/places/delete/<%= items[i]._id%> "> Eliminate </a></td>
               </tr>
             <% } %>
           </tbody>
@@ -35,5 +35,6 @@
       <% } %>
     </div>
     <h3><a href="/places/create">Create new place</a></h3>
+    <h3><a href="/items">See all items</a></h3>
   </body>
 </html>

@@ -3,7 +3,7 @@ var Item = require('../models/place');
 
 var itemController = {};
 
-// mostra todos items 
+// Show all the places 
 itemController.showAll = function(req, res){
     Item.find({}).exec((err, dbitems)=>{
         if (err){
@@ -16,7 +16,7 @@ itemController.showAll = function(req, res){
     })
 }
 
-// mostra 1 item por id
+// Show 1 place by id
 itemController.show = function(req, res){
     Item.findOne({_id:req.params.id}).exec((err, dbitem)=>{
         if (err){
@@ -28,12 +28,12 @@ itemController.show = function(req, res){
     })
 }
 
-// form para criar 1 item
+// Form to create 1 place
 itemController.formCreate = function(req,res){
     res.render('places/createForm');
 }
 
-// cria 1 item como resposta a um post de um form
+// Create 1 place as response of POST of form
 itemController.create = function(req,res){
     var item = new Item(req.body);
     item.save((err)=>{
@@ -46,38 +46,38 @@ itemController.create = function(req,res){
     })
 }
 
-// mostra 1 item para edicao
+// Show 1 place to edit
 itemController.formEdit = function(req, res){
     Item.findOne({_id:req.params.id}).exec((err, dbitem)=>{
         if (err){
             console.log('Erro a ler');
             res.redirect('/error')
         } else {
-            res.render('items/itemEditDetails', {item: dbitem});
+            res.render('places/placeEditDetails', {item: dbitem});
         }
     })
 }
 
-// edita 1 item como resposta a um post de um form editar
+// Edit 1 place as response of POST edit form
 itemController.edit = function(req,res){
     Item.findByIdAndUpdate(req.body._id, req.body, (err, editedItem)=>{
         if (err){
             console.log('Erro a gravar');
             res.redirect('/error')
         } else {
-            res.redirect('/items/show/'+req.body._id);
+            res.redirect('/places/show/'+req.body._id);
         }
     } )
 }
 
-// elimina 1 item
+// Eliminate 1 place
 itemController.delete = function(req, res){
     Item.remove({_id:req.params.id}).exec((err)=>{
         if (err){
             console.log('Erro a ler');
             
         } else {
-            res.redirect('/items')
+            res.redirect('/places')
         }
     })
 }

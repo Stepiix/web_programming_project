@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Item = require('../models/item');
+var Place = require('../models/place');
 
 var itemController = {};
 
@@ -30,7 +31,14 @@ itemController.show = function(req, res){
 
 // form para criar 1 item
 itemController.formCreate = function(req,res){
-    res.render('items/createForm');
+    Place.find({}).exec((err, dbplaces)=>{
+        if (err){
+            console.log('Erro a ler');
+            res.redirect('/error')
+        } else {
+            res.render('items/createForm', {places: dbplaces});
+        }
+    })
 }
 
 // cria 1 item como resposta a um post de um form
@@ -53,7 +61,14 @@ itemController.formEdit = function(req, res){
             console.log('Erro a ler');
             res.redirect('/error')
         } else {
-            res.render('items/itemEditDetails', {item: dbitem});
+            Place.find({}).exec((err, dbplaces)=>{
+                if (err){
+                    console.log('Erro a ler');
+                    res.redirect('/error')
+                } else {
+                    res.render('items/itemEditDetails', {item: dbitem, places: dbplaces});
+                }
+            })
         }
     })
 }
