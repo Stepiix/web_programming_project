@@ -1,34 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Item Detail</title>
+    <title>Event Detail</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <div class="container">
-      <h1>Item Detail</h1>
+      <h1>Event Detail</h1>
       <table>
         <tbody>
         <tr>
-            <td>Id</td>
-            <td>:</td>
-            <td><%= item._id %></td>
-            </tr>
+          <td>Id</td>
+          <td>:</td>
+          <td><%= item._id %></td>
+        </tr>
         <tr>
-            <td>Name</td>
-            <td>:</td>
-            <td><%= item.name %></td>
-          </tr>
-          
+          <td>Name</td>
+          <td>:</td>
+          <td><%= item.name %></td>
+        </tr>
+        <tr>
+          <td>Details</td>
+          <td>:</td>
+          <td><%= item.details %> </td>
+        </tr>
+        <tr>
+          <td>Date</td>
+          <td>:</td>
+          <td><%= item.date %> </td>
+        </tr>
+        <tr>
+          <td>Place</td>
+          <td>:</td>
+          <td><%= item.place_id %> </td>
+        </tr>
+        <% if (item.seated) { %>
           <tr>
-            <td>Quantity</td>
+            <td>Seated event in</td>
             <td>:</td>
-            <td>$<%= item.quantity %> </td>
+            <td><%= item.e_structure %> </td>
           </tr>
-        </tbody>
-      </table>
+        </tbody></table>
+        <% } else { %>
+          </tbody></table>
+        <% } %>
     </div>
-    <h3><a href="/items">Ver todos os item</a></h3>
+    <h3><a href="/items">Watch all the events</a></h3>
   </body>
 </html>
 
