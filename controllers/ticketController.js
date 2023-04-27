@@ -11,32 +11,30 @@ ticketController.showAll = function(req, res){
             console.log('Erro a ler');
             res.redirect('/error')
         } else {
-            Item.findOne({_id:req.params.id_e}).exec((err, dbitem)=>{
-                if (err){
-                    console.log('Erro a ler');
-                    res.redirect('/error')
-                } else {
-                    res.render('tickets/ticketList', {item: dbitem, tickets: dbticket});
-                }
-            })
+            id_e = req.params.id_e
+            res.render('tickets/ticketList', {event: id_e, tickets: dbticket});
         }
     })
 }
 
-// Form to create 1 place
+// Form to create 1 ticket
 ticketController.formCreate = function(req,res){
-    res.render('places/createForm');
+    id_e = req.params.id_e
+    console.log(id_e)
+    res.render('tickets/createForm', {event: id_e});
+
 }
 
-// Create 1 place as response of POST of form
+
+// Create 1 ticket as response of POST of form
 ticketController.create = function(req,res){
-    var item = new Item(req.body);
-    item.save((err)=>{
+    var ticket = new Ticket(req.body);
+    ticket.save((err)=>{
         if (err){
             console.log('Erro a gravar');
             res.redirect('/error')
         } else {
-            res.redirect('/places');
+            res.redirect('/items/'+req.params.id_e+'/tickets');
         }
     })
 }
@@ -65,14 +63,15 @@ ticketController.edit = function(req,res){
     } )
 }
 
-// Eliminate 1 place
+// Eliminate 1 ticket
 ticketController.delete = function(req, res){
-    Item.remove({_id:req.params.id}).exec((err)=>{
+    Ticket.remove({_id:req.params.id}).exec((err)=>{
         if (err){
             console.log('Erro a ler');
-            
+            res.redirect('/error')
         } else {
-            res.redirect('/places')
+            console.log('ok')
+            res.redirect('/items/'+req.params.id_e+'/tickets')
         }
     })
 }
