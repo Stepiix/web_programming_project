@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 var Item = require('../models/place');
+var Sale = require('../models/sale');
+
 
 var itemController = {};
 
