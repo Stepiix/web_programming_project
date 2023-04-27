@@ -12,5 +12,8 @@ router.post('/edit/:id', itemController.edit);
 router.get('/delete/:id', itemController.delete );
 
 router.get('/:id_e/tickets', ticketController.showAll );
+router.get('/:id_e/tickets/create', ticketController.formCreate);
+router.post('/:id_e/tickets/create', ticketController.create);
+router.get('/:id_e/tickets/delete/:id', ticketController.delete );
   
 module.exports = router;

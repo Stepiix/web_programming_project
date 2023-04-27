@@ -5,33 +5,36 @@
   </head>
   <body>
     <div class="container">
-      <h1>Tickets List for <input type="hidden" name="event_id" id="event_id" value="<%= item._id %>"><%= item._id %></h1>
+      <h1>Tickets List for <input type="hidden" name="event_id" id="event_id" value="<%= event %>"><%= event %></h1>
       
-      <h3><a href="/places/create">Create new type of ticket</a></h3>
-      <h3><a href="/items/show/<%= item._id %>">Return to the event</a></h3>
+      <h3><a href="/items/<%= event %>/tickets/create">Create new type of ticket</a></h3>
+      <h3><a href="/items/show/<%= event %>">Return to the event</a></h3>
 
       <% if(tickets.length>0) { %>
         <table class="list-table">
           <thead>
             <tr>
               <th>#</th>
-              <th>Place Name</th>
-              <th>Address</th>
+              <th>Event ID</th>
+              <th>Ticket ID</th>
+              <th>Type</th>
               <th>Edit</th>
               <th>Eliminate</th>
             </tr>
           </thead>
           <tbody>
 
-            <% for(var i=0; i<items.length;i++) { %>
+            <% for(var i=0; i<tickets.length;i++) { %>
+            <% if (tickets[i].event_id == event) { %>
               <tr>
                 <td> <%=i%> </td>
+                <td> <%= tickets[i].event_id%></td>
+                <td> <%= tickets[i]._id%></td>
                 <td> <%= tickets[i].type%></td>
-                <td> <%= ticket[i].price%></a></td>
-                <td><a href="/:id/tickets/edit/<%= tickets[i]._id%> "> Edit </a></td>
-                <td><a href="/:id/tickets/delete/<%= tickets[i]._id%> "> Eliminate </a></td>
+                <td><a href="/items/<%= event %>/tickets/edit/<%= tickets[i]._id%> "> Edit </a></td>
+                <td><a href="/items/<%= event %>/tickets/delete/<%= tickets[i]._id%> "> Eliminate </a></td>
               </tr>
-            <% } %>
+            <% } else {} } %>
           </tbody>
         </table>
       <% } else { %>

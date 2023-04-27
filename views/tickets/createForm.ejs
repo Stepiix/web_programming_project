@@ -6,16 +6,24 @@
   <body>
     <div class="container">
       <h1>Create New Ticket</h1>
-      <form action="/places/create" method="post">
+      <form action="/items/<%= event %>/tickets/create" method="post">
         <table>
           <tbody>
             <tr>
-              <td>Name</td>
-              <td><input type="text" name="name" /></td>
+              <td>Event ID</td>
+              <td><input type="hidden" name="event_id" value="<%= event %>"><%= event %></td>
             </tr>
             <tr>
-              <td>Address</td>
-              <td><input type="text" name="address" /></td>
+              <td>Type of ticket</td>
+              <td><select id="type" name="type">
+                <option value="Children">Children</option>
+                <option value="Adult">Adult</option>
+                <option value="Senior">Senior</option>
+              </select></td>
+            </tr>
+            <tr>
+              <td>Quantity</td>
+              <td><input type="number" name="quantity" /></td>
             </tr>
             <tr>
               <td colspan="2"><button type="submit">Save</button></td>
@@ -24,7 +32,6 @@
         </table>
       </form>
     </div>
-    <h3><a href="/places">See all places</a></h3>
-    <h3><a href="/items">See all events</a></h3>
+    <h3><a href="/items/<%= event %>/tickets">See all tickets of event</a></h3>
   </body>
 </html>
