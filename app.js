@@ -10,6 +10,7 @@ var indexRouter = require('./routes/index');
 var itemsRouter = require('./routes/items');
 var placesRouter = require('./routes/places');
 var salesRouter = require('./routes/sales');
+var userRouter = require('./routes/users');
 const { log } = require('console');
 
 mongoose.Promise = global.Promise
@@ -35,6 +36,7 @@ app.use('/', indexRouter);
 app.use('/items', itemsRouter);
 app.use('/places', placesRouter);
 app.use('/sales', salesRouter);
+app.use('/users', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
