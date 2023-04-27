@@ -3,7 +3,6 @@ var router = express.Router();
 var itemController = require('../controllers/placeController');
 
 router.get('/', itemController.showAll ); //default
-router.get('/show/:id', itemController.show );
 router.get('/create', itemController.formCreate);
 router.post('/create', itemController.create);
 router.get('/edit/:id', itemController.formEdit);

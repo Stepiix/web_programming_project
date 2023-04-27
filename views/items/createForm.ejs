@@ -27,7 +27,7 @@
                 <% if(places.length>0) { %>
                   <select id="place_id" name="place_id">
                   <% for(var i=0; i<places.length;i++) { %>
-                    <option value="<%= places[i]._id%>"><%= places[i].name%></option>
+                    <option value="<%= places[i].name%>"><%= places[i].name%></option>
                   <% } %>
                   </select>
                   <td><a href="/places/create">Create new place</a></td>
@@ -37,8 +37,8 @@
               </td>
             </tr>
             <tr>
-              <td>  If the event has seats, please add also the structure</td>
-              <td><input type="radio" name="seated" />   <input type="text" name="e_structure" placeholder="Structure ID" /></td>
+              <td>Capacity of the event</td>
+              <td><input type="number" name="capacity" /></td>
             </tr>
             <tr>
               <td colspan="2"><button type="submit">Save</button></td>
