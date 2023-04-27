@@ -7,7 +7,7 @@
     <div class="container">
       <h1>Tickets List for <input type="hidden" name="event_id" id="event_id" value="<%= event %>"><%= event %></h1>
       
-      <h3><a href="/items/<%= event %>/tickets/create">Create new type of ticket</a></h3>
+      <h3><a href="/items/<%= event %>/tickets/create">Create new ticket</a></h3>
       <h3><a href="/items/show/<%= event %>">Return to the event</a></h3>
 
       <% if(tickets.length>0) { %>

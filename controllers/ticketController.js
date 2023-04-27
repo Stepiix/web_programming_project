@@ -28,15 +28,18 @@ ticketController.formCreate = function(req,res){
 
 // Create 1 ticket as response of POST of form
 ticketController.create = function(req,res){
-    var ticket = new Ticket(req.body);
-    ticket.save((err)=>{
+
+    for (var i=0; i<req.body.quantity;i++) {
+        var ticket = new Ticket(req.body);
+        ticket.save((err)=>{
         if (err){
             console.log('Erro a gravar');
             res.redirect('/error')
-        } else {
-            res.redirect('/items/'+req.params.id_e+'/tickets');
-        }
-    })
+        } else {}
+        })
+    }
+    res.redirect('/items/'+req.params.id_e+'/tickets');
+    
 }
 
 // Show 1 place to edit
