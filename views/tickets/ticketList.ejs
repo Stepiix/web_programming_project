@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tickets List</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Tickets List for <input type="hidden" name="event_id" id="event_id" value="<%= item._id %>"><%= item._id %></h1>
+      
+      <h3><a href="/places/create">Create new type of ticket</a></h3>
+      <h3><a href="/items/show/<%= item._id %>">Return to the event</a></h3>
+
+      <% if(tickets.length>0) { %>
+        <table class="list-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Place Name</th>
+              <th>Address</th>
+              <th>Edit</th>
+              <th>Eliminate</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <% for(var i=0; i<items.length;i++) { %>
+              <tr>
+                <td> <%=i%> </td>
+                <td> <%= tickets[i].type%></td>
+                <td> <%= ticket[i].price%></a></td>
+                <td><a href="/:id/tickets/edit/<%= tickets[i]._id%> "> Edit </a></td>
+                <td><a href="/:id/tickets/delete/<%= tickets[i]._id%> "> Eliminate </a></td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      <% } else { %>
+        <div>No tickets found</div>
+      <% } %>
+    </div>
+  </body>
+</html>

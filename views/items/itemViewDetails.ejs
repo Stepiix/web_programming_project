@@ -34,6 +34,11 @@
           <td>:</td>
           <td><%= item.place_id %> </td>
         </tr>
+        <tr>
+          <td>Tickets</td>
+          <td>:</td>
+          <td><a href="/items/<%= item._id %>/tickets">Watch all the tickets</a></td>
+        </tr>
         <% if (item.seated) { %>
           <tr>
             <td>Seated event in</td>

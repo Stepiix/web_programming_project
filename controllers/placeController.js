@@ -16,18 +16,6 @@ itemController.showAll = function(req, res){
     })
 }
 
-// Show 1 place by id
-itemController.show = function(req, res){
-    Item.findOne({_id:req.params.id}).exec((err, dbitem)=>{
-        if (err){
-            console.log('Erro a ler');
-            res.redirect('/error')
-        } else {
-            res.render('items/itemViewDetails', {item: dbitem});
-        }
-    })
-}
-
 // Form to create 1 place
 itemController.formCreate = function(req,res){
     res.render('places/createForm');
