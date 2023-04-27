@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Ticket = require('../models/ticket');
-var Item = require('../models/item')
+var Item = require('../models/item');
+var T_types = require('../models/t_type')
 
 var ticketController = {};
 
@@ -8,7 +9,7 @@ var ticketController = {};
 ticketController.showAll = function(req, res){
     Ticket.find({}).exec((err, dbticket)=>{
         if (err){
-            console.log('Erro a ler');
+            console.log('Reading error');
             res.redirect('/error')
         } else {
             id_e = req.params.id_e
@@ -17,29 +18,33 @@ ticketController.showAll = function(req, res){
     })
 }
 
-// Form to create 1 ticket
+// Form to create many tickets
 ticketController.formCreate = function(req,res){
     id_e = req.params.id_e
-    console.log(id_e)
-    res.render('tickets/createForm', {event: id_e});
-
+    
+    T_types.find({}).exec((err, dbtypes)=>{
+        if (err){
+            console.log('Reading error');
+            res.redirect('/error')
+        } else {
+            res.render('tickets/createForm', {event: id_e, types: dbtypes});
+        }
+    })
 }
 
 
-// Create 1 ticket as response of POST of form
+// Create many tickets as response of POST of form
 ticketController.create = function(req,res){
-
     for (var i=0; i<req.body.quantity;i++) {
         var ticket = new Ticket(req.body);
         ticket.save((err)=>{
         if (err){
-            console.log('Erro a gravar');
+            console.log('Saving error');
             res.redirect('/error')
         } else {}
         })
     }
     res.redirect('/items/'+req.params.id_e+'/tickets');
-    
 }
 
 // Show 1 place to edit

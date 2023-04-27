@@ -15,11 +15,17 @@
             </tr>
             <tr>
               <td>Type of ticket</td>
-              <td><select id="type" name="type">
-                <option value="Children">Children</option>
-                <option value="Adult">Adult</option>
-                <option value="Senior">Senior</option>
-              </select></td>
+              <td>
+                <% if(types.length>0) { %>
+                  <select id="type" name="type">
+                <% for(var i=0; i<types.length;i++) { %>
+                  <option value="<%= types[i].name%>"><%= types[i].type%> <%= types[i].price%>,00€</option>
+                <% } %>
+                </select>
+                <td><a href="/items/<%= event %>/tickets/type">Create new type of ticket</a></td>
+              <% } else { %>
+                <a href="/items/<%= event %>/tickets/type">Create new type of ticket</a>
+              <% } %>
             </tr>
             <tr>
               <td>Quantity</td>
