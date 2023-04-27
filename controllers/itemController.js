@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Item = require('../models/item');
 var Place = require('../models/place');
-var ticketController = require('../controllers/ticketController');
+var Ticket = require('../models/ticket');
 
 var itemController = {};
 

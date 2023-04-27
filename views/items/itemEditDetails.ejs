@@ -21,7 +21,7 @@
             </tr>
             <tr>
               <td>Details</td>
-              <td><input type="text" name="quantity" id="quantity" value="<%= item.details %>"></td>
+              <td><input type="text" name="details" id="details" value="<%= item.details %>"></td>
             </tr>
             <tr>
               <td>Date</td>
@@ -46,8 +46,8 @@
               </td>
             </tr>
             <tr>
-              <td>  If the event has seats, please add also the structure</td>
-              <td><input type="radio" name="seated" id="seated" /><input type="text" name="e_structure" id="e_structure" value="<%= item.e_structure %>" /></td>
+              <td>Capacity of the event</td>
+              <td><input type="number" name="capacity" value="<%= item.capacity %>"/></td>
             </tr>
             <tr>
               <td colspan="2"><button type="submit">Edit</button></td>

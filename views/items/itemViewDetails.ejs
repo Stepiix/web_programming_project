@@ -35,20 +35,17 @@
           <td><%= item.place_id %> </td>
         </tr>
         <tr>
+          <td>Capacity</td>
+          <td>:</td>
+          <td><%= item.capacity %> </td>
+        </tr>
+        <tr>
           <td>Tickets</td>
           <td>:</td>
           <td><a href="/items/<%= item._id %>/tickets">Watch all the tickets</a></td>
         </tr>
-        <% if (item.seated) { %>
-          <tr>
-            <td>Seated event in</td>
-            <td>:</td>
-            <td><%= item.e_structure %> </td>
-          </tr>
-        </tbody></table>
-        <% } else { %>
-          </tbody></table>
-        <% } %>
+        </tbody>
+      </table>
     </div>
     <h3><a href="/items">Watch all the events</a></h3>
   </body>

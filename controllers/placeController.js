@@ -53,7 +53,7 @@ itemController.edit = function(req,res){
             console.log('Erro a gravar');
             res.redirect('/error')
         } else {
-            res.redirect('/places/show/'+req.body._id);
+            res.redirect('/places');
         }
     } )
 }
