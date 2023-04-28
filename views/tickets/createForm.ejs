@@ -18,8 +18,10 @@
               <td>
                 <% if(types.length>0) { %>
                   <select id="type" name="type">
-                  <% for(var i=0;i<types.length && types[i].event_id==event;i++) { %>
+                  <% for(var i=0;i<types.length;i++) { %>
+                    <% if (types[i].event_id==event) { %>
                     <option value="<%= types[i].name%>"><%= types[i].type%> <%= types[i].price%>,00€</option>
+                    <% } else {} %>
                 <% } %>
                 </select>
                 <td><a href="/items/<%= event %>/tickets/type">Create new type of ticket</a></td>
