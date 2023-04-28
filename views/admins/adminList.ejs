@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Event List</title>
+    <title>Admin List</title>
   </head>
   <body>
     <div class="container">
-      <h1>User List</h1>
+      <h1>Admin List</h1>
       <% if(items.length>0) { %>
         <table class="list-table">
           <thead>
@@ -29,18 +29,18 @@
                 <td> <%= items[i].name%></a></td>
                 <td> <%= items[i].phonenumber%></a></td>
                 <td> <%= items[i].email%></a></td>
-                <td><a href="/users/show/<%= items[i]._id%> "> Show </td>
-                <td><a href="/users/edit/<%= items[i]._id%> "> Edit </a></td>
-                <td><a href="/users/delete/<%= items[i]._id%> "> Eliminate </a></td>
+                <td><a href="/admins/show/<%= items[i]._id%> "> Show </td>
+                <td><a href="/admins/edit/<%= items[i]._id%> "> Edit </a></td>
+                <td><a href="/admins/delete/<%= items[i]._id%> "> Eliminate </a></td>
               </tr>
             <% } %>
           </tbody>
         </table>
       <% } else { %>
-        <div>No persons found</div>
+        <div>No admin found</div>
       <% } %>
     </div>
     <h3><a href="/users/create">Create new User</a></h3>
-    <h3><a href="/admin/create">Create new Admin</a></h3>
+    <h3><a href="/admins/create">Create new Admin</a></h3>
   </body>
 </html>
