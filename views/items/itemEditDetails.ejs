@@ -17,7 +17,7 @@
               </tr>
           <tr>
               <td>Name</td>
-              <td><input type="text" name="name" id="name" value="<%= item.name %>"></td>
+              <td><input type="text" name="name" id="name" value="<%= item.name %>" required></td>
             </tr>
             <tr>
               <td>Details</td>
@@ -25,13 +25,13 @@
             </tr>
             <tr>
               <td>Date</td>
-              <td><input type="date" name="date" id="date" value="<%= item.date %>"/></td>
+              <td><input type="date" name="date" id="date" value="<%= item.date %>" required/></td>
             </tr>
             <tr>
               <td>Place</td>
               <td>
                 <% if(places.length>0) { %>
-                  <select id="place_id" name="place_id" >
+                  <select id="place_id" name="place_id" required>
                   <% for(var i=0; i<places.length;i++) { %>
                     <% if (item.place_id == places[i].name ) { %>
                       <option value="<%= places[i].name%>" selected><%= places[i].name%></option>

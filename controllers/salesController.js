@@ -1,13 +1,10 @@
 var mongoose = require('mongoose');
-var Item = require('../models/item');
-var Place = require('../models/place');
-var Ticket = require('../models/ticket');
 var Sale = require('../models/sale');
 
-var itemController = {};
+var saleController = {};
 
 // mostra todos items 
-itemController.showAll = function(req, res){
+saleController.showAll = function(req, res){
     Sale.find({}).exec((err, dbitems)=>{
         if (err){
             console.log('Erro a ler');
@@ -20,8 +17,8 @@ itemController.showAll = function(req, res){
 }
 
 // mostra 1 item por id
-itemController.show = function(req, res){
-    Item.findOne({_id:req.params.id}).exec((err, dbitem)=>{
+saleController.show = function(req, res){
+    Sale.findOne({_id:req.params.id}).exec((err, dbitem)=>{
         if (err){
             console.log('Erro a ler');
             res.redirect('/error')
@@ -32,7 +29,7 @@ itemController.show = function(req, res){
 }
 
 // form para criar 1 item
-itemController.formCreate = function(req,res){
+saleController.formCreate = function(req,res){
     Place.find({}).exec((err, dbplaces)=>{
         if (err){
             console.log('Erro a ler');
@@ -44,7 +41,7 @@ itemController.formCreate = function(req,res){
 }
 
 // cria 1 item como resposta a um post de um form
-itemController.create = function(req,res){
+saleController.create = function(req,res){
     var item = new Item(req.body);
     item.save((err)=>{
         if (err){
@@ -57,8 +54,8 @@ itemController.create = function(req,res){
 }
 
 // mostra 1 item para edicao
-itemController.formEdit = function(req, res){
-    Item.findOne({_id:req.params.id}).exec((err, dbitem)=>{
+saleController.formEdit = function(req, res){
+    Sale.findOne({_id:req.params.id}).exec((err, dbitem)=>{
         if (err){
             console.log('Erro a ler');
             res.redirect('/error')
@@ -76,8 +73,8 @@ itemController.formEdit = function(req, res){
 }
 
 // edita 1 item como resposta a um post de um form editar
-itemController.edit = function(req,res){
-    Item.findByIdAndUpdate(req.body._id, req.body, (err, editedItem)=>{
+saleController.edit = function(req,res){
+    Sale.findByIdAndUpdate(req.body._id, req.body, (err, editedItem)=>{
         if (err){
             console.log('Erro a gravar');
             res.redirect('/error')
@@ -88,15 +85,15 @@ itemController.edit = function(req,res){
 }
 
 // elimina 1 item
-itemController.delete = function(req, res){
-    Item.remove({_id:req.params.id}).exec((err)=>{
+saleController.delete = function(req, res){
+    Sale.remove({_id:req.params.id}).exec((err)=>{
         if (err){
             console.log('Erro a ler');
             
         } else {
-            res.redirect('/items')
+            res.redirect('/sales')
         }
     })
 }
 
-module.exports = itemController;
+module.exports = saleController;

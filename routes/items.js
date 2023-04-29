@@ -15,6 +15,8 @@ router.get('/delete/:id', itemController.delete );
 router.get('/:id_e/tickets', ticketController.showAll );
 router.get('/:id_e/tickets/create', ticketController.formCreate);
 router.post('/:id_e/tickets/create', ticketController.create);
+router.get('/:id_e/tickets/edit/:id', ticketController.formEdit);
+router.post('/:id_e/tickets/edit/:id', ticketController.edit);
 router.get('/:id_e/tickets/delete/:id', ticketController.delete);
 
 router.get('/:id_e/tickets/allTypes', t_TypeController.showAll );
