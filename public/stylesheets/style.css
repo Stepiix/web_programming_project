@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: aquamarine;
+  background-color: #006d6d;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 header{
@@ -68,6 +68,7 @@ button:hover{
 .nav-branding{
   cursor: pointer;
   font-size: 2rem;
+  font-weight: 800;
   position: absolute;
   left: 0;
   padding: 0 1rem;
