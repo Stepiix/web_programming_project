@@ -2,8 +2,42 @@
 <html>
   <head>
     <title>Event List</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
+    <header>
+      <nav class="navbar">
+        <a href="/" class="nav-branding">PortugueseRoots</a>
+        <a href="/users" class="button">See all Users</a>
+        <a href="/users/create" class="button secondary">Create user</a>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="/admins/create" class="nav-link">Create admin</a>
+          </li>
+          <li class="nav-item">
+            <a href="/admins" class="nav-link">See all Admins</a>
+          </li class="nav-item">
+            <a href="/persons" class="nav-link">See all the users</a></li>
+          <li class="nav-item">
+            <a href="/items" class="nav-link">See all the events</a>
+          </li>
+          <li class="nav-item">
+            <a href="/places" class="nav-link">See all the places</a>
+          </li>
+          <li class="nav-item">
+            <a href="/places" class="nav-link">See all the places</a>
+          </li>
+          <li class="nav-item">
+            <a href="/sales" class="nav-link">See all the sales</a>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
     <div class="container">
       <h1>User List</h1>
       <% if(items.length>0) { %>
@@ -43,4 +77,5 @@
     <h3><a href="/users/create">Create new User</a></h3>
     <h3><a href="/admin/create">Create new Admin</a></h3>
   </body>
+  <script src="/js/navbar.js"></script>
 </html>
