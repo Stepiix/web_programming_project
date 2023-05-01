@@ -8,7 +8,8 @@ var ItemSchema = new mongoose.Schema({
     details: String,
     capacity: Number,
     seated: Boolean,
-    e_structure: String  //If seated, ID of the eventStructure
+    e_structure: String,  //If seated, ID of the eventStructure
+    image: File
 });
 
 module.exports = mongoose.model('Item', ItemSchema);
