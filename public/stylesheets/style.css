@@ -1,12 +1,106 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
-  padding: 50px;
+  background-color: #006d6d;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
-a {
-  color: #00B7FF;
+header{
+  background-color: #262626;
 }
+li{
+  list-style: none;
+}
+a{
+  color: white;
+  text-decoration: none;
+}
+.navbar{
+  min-height: 70px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 24px;
+}
+.button{
+  padding: 8px 20px;
+  background: rgba(0,136,169,1);
+  border: 1px solid#006d6d;
+  border-radius: 50em;
+  cursor: pointer;
+  margin: 0 5px;
 
+}
+button:hover{
+  background-color: rgba(0,136,169,0.75);
+  border-color: #3da7a7;
+}
+.secondary{
+  background-color: rgba(0,0,0,.25);
+}
+.secondary:hover{
+  color: #ddd;
+}
+.nav-menu{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+  position: fixed;
+  right: -100%;
+  top: 70px;
+  gap: 0;
+  flex-direction: column;
+  background-color: #262626;
+  width: 100%;
+  text-align: center;
+  transition: 0.3s;
+}
+.nav-item{
+  margin: 16px 0;
+}
+.nav-menu.active{
+  right: 0;
+}
+.nav-branding{
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: 800;
+  position: absolute;
+  left: 0;
+  padding: 0 1rem;
+}
+.nav-link{
+  transition: 0.7s ease;
+}
+.nav-link:hover{
+  color: dodgerblue;
+}
+.hamburger{
+  cursor: pointer;
+  margin: 0 0 0 1rem;
+}
+.hamburger.active .bar:nth-last-child(2){
+  opacity: 0;
+}
+.hamburger.active .bar:nth-last-child(1){
+  transform: translateY(-8px) rotate(45deg);
+}
+.hamburger.active .bar:nth-last-child(3){
+  transform: translateY(8px) rotate(-45deg);
+}
+.bar{
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: white;
+}
 img {
   width: 400px;
   height: 300px;
