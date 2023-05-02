@@ -44,14 +44,15 @@
     <section>
       <div class="container">
         <h1>Sale List</h1>
-        <% if(items.length>0) { %>
+        <% if(sales.length>0) { %>
           <table class="list-table">
             <thead>
               <tr>
                 <th>#</th>
-                <th>Id</th>
-                <th>Ticket id</th>
-                <th>Person id</th>
+                <th>ID</th>
+                <th>Ticket ID</th>
+                <th>Customer Mail</th>
+                <th>Event Name</th>
                 <th>Show</th>
                 <th>Edit</th>
                 <th>Eliminate</th>
@@ -59,18 +60,24 @@
             </thead>
             <tbody>
   
-              <% for(var i=0; i<items.length;i++) { %>
+              <% for(var i=0; i<sales.length; i++) { %>
                 <tr>
-                  <td> <%=i%> </td>
-                  <td> <%=items[i]._id%></a></td>
-                  <td> <%= items[i].name%></a></td>
-                  <td> <%= items[i].details%></a></td>
-                  <td> <%= items[i].date%></a></td>
-                  <td> <%= items[i].place_id%></a></td>
-                  <td> <%= items[i].capacity%></a></td>
-                  <td><a href="/sales/show/<%= items[i]._id%> "> Show </td>
-                  <td><a href="/sales/edit/<%= items[i]._id%> "> Edit </a></td>
-                  <td><a href="/sales/delete/<%= items[i]._id%> "> Eliminate </a></td>
+                  <td> <%= i+1%> </td>
+                  <td> <%= sales[i]._id%></td>
+                  <td> <%= sales[i].ticket_id%></td>
+                  <td>
+                    <% for(var j=0; j<users.length; j++) { %>
+                      <% if(users[j]._id==sales[i].customer_id) { %>
+                        <a href="/users/show/<%= users[j]._id%> "><%= users[j].email%></a>
+                    <% } else {} }%>
+                  </td>
+                  <td>
+                    <% for(var j=0; j<users.length; j++) { %>
+                      <% if(events[j]._id==sales[i].event_id) { %>
+                        <a href="/items/show/<%= events[j]._id%> "><%= events[j].name%></a>
+                    <% } else {} }%>
+                  </td>
+                  <td><a href="/sales/delete/<%= sales[i]._id%> "> Eliminate </a></td>
                 </tr>
               <% } %>
             </tbody>
