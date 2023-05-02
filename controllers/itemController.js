@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 var Item = require('../models/item');
 var Place = require('../models/place');
 var Ticket = require('../models/ticket');
+var Type = require('../models/t_type');
+var Sale = require('../models/sale');
 
 var itemController = {};
 
@@ -89,14 +91,36 @@ itemController.edit = function(req,res){
 
 // elimina 1 item
 itemController.delete = function(req, res){
-    Item.remove({_id:req.params.id}).exec((err)=>{
+    Sale.remove({event_id:req.params.id}).exec((err)=>{
         if (err){
-            console.log('Erro a ler');
-            
+            console.log('Reading error - Sale');
+            res.redirect('/error')
         } else {
-            res.redirect('/items')
+            Type.remove({event_id:req.params.id}).exec((err)=>{
+                if (err){
+                    console.log('Reading error - Type');
+                    res.redirect('/error')
+                } else {
+                    Ticket.remove({event_id:req.params.id}).exec((err)=>{
+                        if (err){
+                            console.log('Reading error - Ticket');
+                            res.redirect('/error')
+                        } else {
+                            Item.remove({_id:req.params.id}).exec((err)=>{
+                                if (err){
+                                    console.log('Reading error - Event');
+                                    res.redirect('/error')
+                                } else {
+                                    res.redirect('/items')
+                                }
+                            })
+                        }
+                    })
+                }
+            })
         }
     })
+
 }
 
 module.exports = itemController;
