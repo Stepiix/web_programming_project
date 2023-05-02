@@ -7,6 +7,7 @@ var ItemSchema = new mongoose.Schema({
     place_id: String,
     details: String,
     capacity: Number,
+    seated: Boolean,
     seated: { type: String, enum : ['on', 'off'] },
     e_structure: String  //If seated, ID of the eventStructure
 });
