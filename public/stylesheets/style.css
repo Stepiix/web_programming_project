@@ -50,17 +50,17 @@ button:hover{
   align-items: center;
   gap: 60px;
   position: fixed;
-  right: -100%;
+  right: -350px;
   top: 70px;
   gap: 0;
   flex-direction: column;
-  background-color: #262626;
-  width: 100%;
+  background-color: #161616;
+  width: 350px;
   text-align: center;
   transition: 0.3s;
 }
 .nav-item{
-  margin: 16px 0;
+  margin: 13px 0;
 }
 .nav-menu.active{
   right: 0;
@@ -107,6 +107,18 @@ img {
 }
 section {
   margin: 2rem 3rem;
+}
+.container{
+  margin: 0;
+  padding: 0;
+  color: black;
+}
+.container h1{
+  font-weight: 600;
+  color: #262626;
+}
+.container td{
+  padding: 2px 5px;
 }
 .links{
   margin: 1rem;
