@@ -2,59 +2,91 @@
 <html>
   <head>
     <title>Create Tickets</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <div class="container">
-      <h1>Create New Ticket</h1>
-
-      <% console.log() %>
-
-      <form action="/items/<%= event._id %>/tickets/create" method="post">
-        <table>
-          <tbody>
-            <tr>
-              <td>Event ID</td>
-              <td><input type="hidden" id="event_id" name="event_id" value="<%= event._id %>"><%= event._id %></td>
-            </tr>
-            <tr>
-              <td>Customer name</td>
-              <td><input type="text" name="name"></td>
-            </tr>
-            <tr>
-              <td>Phone number</td>
-              <td><input type="number" name="phonenumber"></td>
-            </tr>
-            <tr>
-              <td>E-Mail</td>
-              <td><input type="text" name="email"></td>
-            </tr>
-            <tr>
-              <td>Type of ticket</td>
-              <td>
-                <% if(types.length>0) { %>
-                  <select name="t_type" required>
-                  <% for(var i=0;i<types.length;i++) { %>
-                    <% if (types[i].event_id==event._id) { %>
-                    <option value="<%= types[i]._id%>"><%= types[i].type%> <%= types[i].price%>,00€</option>
-                    <% } else {} %>
+    <header>
+      <nav class="navbar">
+        <a href="/" class="nav-branding">PortugueseRoots</a>
+        <a href="/users" class="button">See all Users</a>
+        <a href="/users/create" class="button secondary">Create user</a>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="/admins/create" class="nav-link">Create admin</a>
+          </li>
+          <li class="nav-item">
+            <a href="/admins" class="nav-link">See all Admins</a>
+          </li class="nav-item">
+            <a href="/users" class="nav-link">See all the users</a></li>
+          <li class="nav-item">
+            <a href="/items" class="nav-link">See all the events</a>
+          </li>
+          <li class="nav-item">
+            <a href="/places" class="nav-link">See all the places</a>
+          </li>
+          <li class="nav-item">
+            <a href="/places" class="nav-link">See all the places</a>
+          </li>
+          <li class="nav-item">
+            <a href="/sales" class="nav-link">See all the sales</a>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
+    <section>
+      <div class="container">
+        <h1>Create New Ticket</h1>
+        <form action="/items/<%= event._id %>/tickets/create" method="post">
+          <table>
+            <tbody>
+              <tr>
+                <td>Event ID</td>
+                <td><input type="hidden" id="event_id" name="event_id" value="<%= event._id %>"><%= event._id %></td>
+              </tr>
+              <tr>
+                <td>Customer name</td>
+                <td><select name="customer_id" required>
+                  <option value="">Select a customer or create a new user =></option>
+                  <% for(var i=0;i<customers.length;i++) { %>
+                    <option value="<%= customers[i]._id%>"><%= customers[i].email%></option>
                 <% } %>
-                </select>
-                <td><a href="/items/<%= event._id %>/tickets/type">Create new type of ticket</a></td>
-              <% } else { %>
-                <a href="/items/<%= event._id %>/tickets/type">Create new type of ticket</a>
-              <% } %>
-            </tr>
-            <tr>
-              <td>Quantity</td>
-              <td><input type="number" name="quantity" min="1" max="<%= event.capacity - tickets.length%>" value="1"/></td>
-            </tr>
-            <tr>
-              <td colspan="2"><button type="submit">Save</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
-    </div>
-    <h3><a href="/items/<%= event._id %>/tickets">See all tickets of event</a></h3>
+                </select></td>
+                <td><a href="/users/create">Create a new user</a></td>
+              </tr>
+              <tr>
+                <td>Type of ticket</td>
+                <td>
+                  <% if(types.length>0) { %>
+                    <select name="t_type" required>
+                    <% for(var i=0;i<types.length;i++) { %>
+                      <% if (types[i].event_id==event._id) { %>
+                      <option value="<%= types[i]._id%>"><%= types[i].type%> <%= types[i].price%>,00€</option>
+                      <% } else {} %>
+                  <% } %>
+                  </select>
+                  <td><a href="/items/<%= event._id %>/tickets/type">Create new type of ticket</a></td>
+                <% } else { %>
+                  <a href="/items/<%= event._id %>/tickets/type">Create new type of ticket</a>
+                <% } %>
+              </tr>
+              <tr>
+                <td>Quantity</td>
+                <td><input type="number" name="quantity" min="1" max="<%= event.capacity - tickets.length%>" value="1"/></td>
+              </tr>
+              <tr>
+                <td colspan="2"><button type="submit">Save</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+      <h3 class="links"><a href="/items/<%= event._id %>/tickets">See all tickets of event</a></h3>
+    </section>
   </body>
+  <script src="/js/navbar.js"></script>
 </html>

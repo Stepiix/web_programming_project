@@ -2,39 +2,78 @@
 <html>
   <head>
     <title>Places List</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <div class="container">
-      <h1>Place List</h1>
-      <% if(items.length>0) { %>
-        <table class="list-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Place Name</th>
-              <th>Address</th>
-              <th>Edit</th>
-              <th>Eliminate</th>
-            </tr>
-          </thead>
-          <tbody>
-
-            <% for(var i=0; i<items.length;i++) { %>
+    <header>
+      <nav class="navbar">
+        <a href="/" class="nav-branding">PortugueseRoots</a>
+        <a href="/users" class="button">See all Users</a>
+        <a href="/users/create" class="button secondary">Create user</a>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="/admins/create" class="nav-link">Create admin</a>
+          </li>
+          <li class="nav-item">
+            <a href="/admins" class="nav-link">See all Admins</a>
+          </li>
+          <li class="nav-item">
+            <a href="/users" class="nav-link">See all the users</a>
+          </li>
+          <li class="nav-item">
+            <a href="/items" class="nav-link">See all the events</a>
+          </li>
+          <li class="nav-item">
+            <a href="/places" class="nav-link">See all the places</a>
+          </li>
+          <li class="nav-item">
+            <a href="/places" class="nav-link">See all the places</a>
+          </li>
+          <li class="nav-item">
+            <a href="/sales" class="nav-link">See all the sales</a>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
+    <section>
+      <div class="container">
+        <h1>Place List</h1>
+        <% if(items.length>0) { %>
+          <table class="list-table">
+            <thead>
               <tr>
-                <td> <%=i%> </td>
-                <td> <%= items[i].name%></td>
-                <td> <%= items[i].address%></a></td>
-                <td><a href="/places/edit/<%= items[i]._id%> "> Edit </a></td>
-                <td><a href="/places/delete/<%= items[i]._id%> "> Eliminate </a></td>
+                <th>#</th>
+                <th>Place Name</th>
+                <th>Address</th>
+                <th>Edit</th>
+                <th>Eliminate</th>
               </tr>
-            <% } %>
-          </tbody>
-        </table>
-      <% } else { %>
-        <div>No places found.</div>
-      <% } %>
-    </div>
-    <h3><a href="/places/create">Create new place</a></h3>
-    <h3><a href="/items">See all events</a></h3>
+            </thead>
+            <tbody>
+  
+              <% for(var i=0; i<items.length;i++) { %>
+                <tr>
+                  <td> <%=i%> </td>
+                  <td> <%= items[i].name%></td>
+                  <td> <%= items[i].address%></a></td>
+                  <td><a href="/places/edit/<%= items[i]._id%> "> Edit </a></td>
+                  <td><a href="/places/delete/<%= items[i]._id%> "> Eliminate </a></td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        <% } else { %>
+          <div>No places found.</div>
+        <% } %>
+      </div>
+      <h3 class="links"><a href="/places/create">Create new place</a></h3>
+      <h3 class="links"><a href="/items">See all events</a></h3>
+    </section>
   </body>
+  <script src="/js/navbar.js"></script>
 </html>

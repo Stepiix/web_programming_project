@@ -16,8 +16,10 @@
           </li>
           <li class="nav-item">
             <a href="/admins" class="nav-link">See all Admins</a>
-          </li class="nav-item">
-            <a href="/persons" class="nav-link">See all the users</a></li>
+          </li>
+          <li class="nav-item">
+            <a href="/users" class="nav-link">See all the users</a>
+          </li>
           <li class="nav-item">
             <a href="/items" class="nav-link">See all the events</a>
           </li>
@@ -38,44 +40,46 @@
         </div>
       </nav>
     </header>
-    <div class="container">
-      <h1>Admin List</h1>
-      <% if(items.length>0) { %>
-        <table class="list-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Id</th>
-              <th>Name</th>
-              <th>phonenumber</th>
-              <th>email</th>
-              <th>Show</th>
-              <th>Edit</th>
-              <th>Eliminate</th>
-            </tr>
-          </thead>
-          <tbody>
-
-            <% for(var i=0; i<items.length;i++) { %>
+    <section>
+      <div class="container">
+        <h1>Admin List</h1>
+        <% if(items.length>0) { %>
+          <table class="list-table">
+            <thead>
               <tr>
-                <td> <%=i%> </td>
-                <td> <%=items[i]._id%></a></td>
-                <td> <%= items[i].name%></a></td>
-                <td> <%= items[i].phonenumber%></a></td>
-                <td> <%= items[i].email%></a></td>
-                <td><a href="/admins/show/<%= items[i]._id%> "> Show </td>
-                <td><a href="/admins/edit/<%= items[i]._id%> "> Edit </a></td>
-                <td><a href="/admins/delete/<%= items[i]._id%> "> Eliminate </a></td>
+                <th>#</th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>phonenumber</th>
+                <th>email</th>
+                <th>Show</th>
+                <th>Edit</th>
+                <th>Eliminate</th>
               </tr>
-            <% } %>
-          </tbody>
-        </table>
-      <% } else { %>
-        <div>No admin found</div>
-      <% } %>
-    </div>
-    <h3><a href="/users/create">Create new User</a></h3>
-    <h3><a href="/admins/create">Create new Admin</a></h3>
+            </thead>
+            <tbody>
+  
+              <% for(var i=0; i<items.length;i++) { %>
+                <tr>
+                  <td> <%=i%> </td>
+                  <td> <%=items[i]._id%></a></td>
+                  <td> <%= items[i].name%></a></td>
+                  <td> <%= items[i].phonenumber%></a></td>
+                  <td> <%= items[i].email%></a></td>
+                  <td><a href="/admins/show/<%= items[i]._id%> "> Show </td>
+                  <td><a href="/admins/edit/<%= items[i]._id%> "> Edit </a></td>
+                  <td><a href="/admins/delete/<%= items[i]._id%> "> Eliminate </a></td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        <% } else { %>
+          <div>No admin found</div>
+        <% } %>
+      </div>
+      <h3 class="links"><a href="/users/create">Create new User</a></h3>
+      <h3 class="links"><a href="/admins/create">Create new Admin</a></h3>
+    </section>
   </body>
   <script src="/js/navbar.js"></script>
 </html>

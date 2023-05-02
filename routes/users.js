@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var itemController = require('../controllers/userController');
+var userController = require('../controllers/userController');
 
-router.get('/', itemController.showAll ); //default
-router.get('/show/:id', itemController.show );
-router.get('/create', itemController.formCreate);
-router.post('/create', itemController.create);
-router.get('/edit/:id', itemController.formEdit);
-router.post('/edit/:id', itemController.edit);
-router.get('/delete/:id', itemController.delete )
+router.get('/', userController.showAll ); //default
+router.get('/show/:id', userController.show );
+router.get('/create', userController.formCreate);
+router.post('/create', userController.create);
+router.get('/edit/:id', userController.formEdit);
+router.post('/edit/:id', userController.edit);
+router.get('/delete/:id', userController.delete )
 module.exports = router;

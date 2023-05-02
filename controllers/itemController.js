@@ -50,6 +50,7 @@ itemController.create = function(req,res){
             console.log('Erro a gravar');
             res.redirect('/error')
         } else {
+            console.log(item)
             res.redirect('/items');
         }
     })

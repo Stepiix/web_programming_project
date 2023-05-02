@@ -16,8 +16,10 @@
           </li>
           <li class="nav-item">
             <a href="/admins" class="nav-link">See all Admins</a>
-          </li class="nav-item">
-            <a href="/persons" class="nav-link">See all the users</a></li>
+          </li>
+          <li class="nav-item">
+            <a href="/users" class="nav-link">See all the users</a>
+          </li>
           <li class="nav-item">
             <a href="/items" class="nav-link">See all the events</a>
           </li>
@@ -38,64 +40,66 @@
         </div>
       </nav>
     </header>
-    <div class="container">
-      <h1>Admin Detail</h1>
-      <form action="/admins/edit/<%=item._id%>" method="post">
-        <table>
-          <tbody>
-            <tr>
-              <td>Id</td>
-              <!-- Como o id não pode ser alterado usamos o input hidden para o enviar como campo do formulário. -->
-              <td>
-                <input
-                  type="hidden"
-                  name="_id"
-                  id="_id"
-                  value="<%= item._id %>"
-                /><%= item._id %>
-              </td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  value="<%= item.name %>"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Phone number</td>
-              <td>
-                <input
-                  type="text"
-                  name="phonenumber"
-                  id="phonenumber"
-                  value="<%= item.phonenumber %>"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Email</td>
-              <td>
-                <input
-                  type="text"
-                  name="email"
-                  id="email"
-                  value="<%= item.email %>"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2"><button type="submit">Edit</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
-    </div>
-    <h3><a href="/admins">Watch all the admins</a></h3>
+    <section>
+      <div class="container">
+        <h1>Admin Detail</h1>
+        <form action="/admins/edit/<%=item._id%>" method="post">
+          <table>
+            <tbody>
+              <tr>
+                <td>Id</td>
+                <!-- Como o id não pode ser alterado usamos o input hidden para o enviar como campo do formulário. -->
+                <td>
+                  <input
+                    type="hidden"
+                    name="_id"
+                    id="_id"
+                    value="<%= item._id %>"
+                  /><%= item._id %>
+                </td>
+              </tr>
+              <tr>
+                <td>Name</td>
+                <td>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    value="<%= item.name %>"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Phone number</td>
+                <td>
+                  <input
+                    type="text"
+                    name="phonenumber"
+                    id="phonenumber"
+                    value="<%= item.phonenumber %>"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>
+                  <input
+                    type="text"
+                    name="email"
+                    id="email"
+                    value="<%= item.email %>"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2"><button type="submit">Edit</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+      <h3 class="links"><a href="/admins">Watch all the admins</a></h3>
+    </section>
   </body>
   <script src="/js/navbar.js"></script>
 </html>

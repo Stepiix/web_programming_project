@@ -16,8 +16,10 @@
           </li>
           <li class="nav-item">
             <a href="/admins" class="nav-link">See all Admins</a>
-          </li class="nav-item">
-            <a href="/persons" class="nav-link">See all the users</a></li>
+          </li>
+          <li class="nav-item">
+            <a href="/users" class="nav-link">See all the users</a>
+          </li>
           <li class="nav-item">
             <a href="/items" class="nav-link">See all the events</a>
           </li>
@@ -38,66 +40,66 @@
         </div>
       </nav>
     </header>
-    <div class="container">
-      <h1>Tickets List for <%= event._id %></h1>
-
-      <% var arr = new Array(); var j = 0; %>
-      <% for(var i=0; i<tickets.length;i++) { %>
-        <% if (tickets[i].event_id == event._id) { %>
-          <% arr[j] = tickets[i]; j++; %>
-      <% } else {} } %>
-
-      <% if (arr.length < event.capacity) { %>
-        <h3><a href="/items/<%= event._id %>/tickets/create">Create new ticket</a></h3>
-        <h4><%= arr.length %>/<%= event.capacity %> tickets sold</h4>
-      <% } else { %>
-        <h3>The event is already sold out</h3>
-      <% } %>
-      <h3><a href="/items/show/<%= event._id %>">Return to the event</a></h3>
-
-      <% if(arr.length>0) { %>
-        <table class="list-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Ticket ID</th>
-              <th>Event</th>
-              <th>Sale ID</th>
-              <th>Customer mail</th>
-              <th>Type</th>
-              <th>Edit</th>
-              <th>Eliminate</th>
-            </tr>
-          </thead>
-          <tbody>
-          <% for(var i=0;i<arr.length;i++) { %>
-            <tr>
-              <td> <%= i+1%> </td>
-              <td> <%= arr[i]._id%></td>
-              <td> <%= event.name%></td>
-              <td> <%= arr[i].sale_id%></td>
-              <td><% for(var j=0;j<sales.length;j++) { %>
-                    <% for(var k=0;k<customers.length && sales[j]._id==arr[i].sale_id;k++) { %>
-                      <% if (customers[k]._id==sales[j].customer_id) { %>
-                        <%= customers[k].email%>
-                    <% break; } else {} } %>
-              <% } %></td>
-              <td><% for(var j=0;j<types.length;j++) { %>
-                      <% if (types[j]._id==arr[i].t_type) { %>
-                        <%= types[j].type %> - <%= types[j].price %>,00€
-              <% } else {} } %></td>
-
-
-              <td><a href="/items/<%= event._id %>/tickets/edit/<%= arr[i]._id%> "> Edit </a></td>
-              <td><a href="/items/<%= event._id %>/tickets/delete/<%= arr[i]._id%> "> Eliminate </a></td>
-            </tr>
-          <% } %>
-          </tbody>
-        </table>
-      <% } else { %>
-        <div>No tickets found</div>
-      <% } %>
-    </div>
+    <section>
+      <div class="container">
+        <h1>Tickets List for <%= event._id %></h1>
+  
+        <% var arr = new Array(); var j = 0; %>
+        <% for(var i=0; i<tickets.length;i++) { %>
+          <% if (tickets[i].event_id == event._id) { %>
+            <% arr[j] = tickets[i]; j++; %>
+        <% } else {} } %>
+  
+        <% if (arr.length < event.capacity) { %>
+          <h3><a href="/items/<%= event._id %>/tickets/create">Create new ticket</a></h3>
+          <h4><%= arr.length %>/<%= event.capacity %> tickets sold</h4>
+        <% } else { %>
+          <h3>The event is already sold out</h3>
+        <% } %>
+        <h3><a href="/items/show/<%= event._id %>">Return to the event</a></h3>
+  
+        <% if(arr.length>0) { %>
+          <table class="list-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Ticket ID</th>
+                <th>Event</th>
+                <th>Sale ID</th>
+                <th>Customer mail</th>
+                <th>Type</th>
+                <th>Edit</th>
+                <th>Eliminate</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% for(var i=0;i<arr.length;i++) { %>
+              <tr>
+                <td> <%= i+1%> </td>
+                <td> <%= arr[i]._id%></td>
+                <td> <%= event.name%></td>
+                <td> <%= arr[i].sale_id%></td>
+                <td><% for(var j=0;j<sales.length;j++) { %>
+                      <% for(var k=0;k<customers.length && sales[j]._id==arr[i].sale_id;k++) { %>
+                        <% if (customers[k]._id==sales[j].customer_id) { %>
+                          <%= customers[k].email%>
+                      <% break; } else {} } %>
+                <% } %></td>
+                <td><% for(var j=0;j<types.length;j++) { %>
+                        <% if (types[j]._id==arr[i].t_type) { %>
+                          <%= types[j].type %> - <%= types[j].price %>,00€
+                <% } else {} } %></td>
+                <td><a href="/items/<%= event._id %>/tickets/edit/<%= arr[i]._id%> "> Edit </a></td>
+                <td><a href="/items/<%= event._id %>/tickets/delete/<%= arr[i]._id%> "> Eliminate </a></td>
+              </tr>
+            <% } %>
+            </tbody>
+          </table>
+        <% } else { %>
+          <div>No tickets found</div>
+        <% } %>
+      </div>
+    </section>
   </body>
   <script src="/js/navbar.js"></script>
 </html>

@@ -16,8 +16,10 @@
           </li>
           <li class="nav-item">
             <a href="/admins" class="nav-link">See all Admins</a>
-          </li class="nav-item">
-            <a href="/persons" class="nav-link">See all the users</a></li>
+          </li>
+          <li class="nav-item">
+            <a href="/users" class="nav-link">See all the users</a>
+          </li>
           <li class="nav-item">
             <a href="/items" class="nav-link">See all the events</a>
           </li>
@@ -38,58 +40,60 @@
         </div>
       </nav>
     </header>
-    <div class="container">
-      <h1>Event Detail</h1>
-      <form action="/items/edit/<%=item._id%>" method="post">
-        <table>
-          <tbody>
-          <tr>
-              <td>Id</td>
-              <!-- Como o id não pode ser alterado usamos o input hidden para o enviar como campo do formulário. -->
-              <td><input type="hidden" name="_id" id="_id" value="<%= item._id %>"><%= item._id %></td>
+    <section>
+      <div class="container">
+        <h1>Event Detail</h1>
+        <form action="/items/edit/<%=item._id%>" method="post">
+          <table>
+            <tbody>
+            <tr>
+                <td>Id</td>
+                <!-- Como o id não pode ser alterado usamos o input hidden para o enviar como campo do formulário. -->
+                <td><input type="hidden" name="_id" id="_id" value="<%= item._id %>"><%= item._id %></td>
+                </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name" id="name" value="<%= item.name %>" required></td>
               </tr>
-          <tr>
-              <td>Name</td>
-              <td><input type="text" name="name" id="name" value="<%= item.name %>" required></td>
-            </tr>
-            <tr>
-              <td>Details</td>
-              <td><input type="text" name="details" id="details" value="<%= item.details %>"></td>
-            </tr>
-            <tr>
-              <td>Date</td>
-              <td><input type="date" name="date" id="date" value="<%= item.date %>" required/></td>
-            </tr>
-            <tr>
-              <td>Place</td>
-              <td>
-                <% if(places.length>0) { %>
-                  <select id="place_id" name="place_id" required>
-                  <% for(var i=0; i<places.length;i++) { %>
-                    <% if (item.place_id == places[i].name ) { %>
-                      <option value="<%= places[i].name%>" selected><%= places[i].name%></option>
-                    <% } else { %>
-                      <option value="<%= places[i].name%>"><%= places[i].name%></option>
-                  <% } } %>
-                  </select>
-                  <td><a href="/places/create">Create new place</a></td>
-                <% } else { %>
-                  <a href="/places/create">Create new place</a>
-                <% } %>
-              </td>
-            </tr>
-            <tr>
-              <td>Capacity of the event</td>
-              <td><input type="number" name="capacity" value="<%= item.capacity %>"/></td>
-            </tr>
-            <tr>
-              <td colspan="2"><button type="submit">Edit</button></td>
-            </tr>
-          </tbody>
-        </table>
-    </form>
-    </div>
-    <h3><a href="/items">Watch all the events</a></h3>
+              <tr>
+                <td>Details</td>
+                <td><input type="text" name="details" id="details" value="<%= item.details %>"></td>
+              </tr>
+              <tr>
+                <td>Date</td>
+                <td><input type="date" name="date" id="date" value="<%= item.date %>" required/></td>
+              </tr>
+              <tr>
+                <td>Place</td>
+                <td>
+                  <% if(places.length>0) { %>
+                    <select id="place_id" name="place_id" required>
+                    <% for(var i=0; i<places.length;i++) { %>
+                      <% if (item.place_id == places[i].name ) { %>
+                        <option value="<%= places[i].name%>" selected><%= places[i].name%></option>
+                      <% } else { %>
+                        <option value="<%= places[i].name%>"><%= places[i].name%></option>
+                    <% } } %>
+                    </select>
+                    <td><a href="/places/create">Create new place</a></td>
+                  <% } else { %>
+                    <a href="/places/create">Create new place</a>
+                  <% } %>
+                </td>
+              </tr>
+              <tr>
+                <td>Capacity of the event</td>
+                <td><input type="number" name="capacity" value="<%= item.capacity %>"/></td>
+              </tr>
+              <tr>
+                <td colspan="2"><button type="submit">Edit</button></td>
+              </tr>
+            </tbody>
+          </table>
+      </form>
+      </div>
+      <h3 class="links"><a href="/items">Watch all the events</a></h3>
+    </section>
   </body>
   <script src="/js/navbar.js"></script>
 </html>

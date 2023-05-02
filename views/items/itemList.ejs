@@ -16,8 +16,10 @@
           </li>
           <li class="nav-item">
             <a href="/admins" class="nav-link">See all Admins</a>
-          </li class="nav-item">
-            <a href="/persons" class="nav-link">See all the users</a></li>
+          </li>
+          <li class="nav-item">
+            <a href="/users" class="nav-link">See all the users</a>
+          </li>
           <li class="nav-item">
             <a href="/items" class="nav-link">See all the events</a>
           </li>
@@ -38,47 +40,48 @@
         </div>
       </nav>
     </header>
-    <div class="container">
-      <h1>Event List</h1>
-      <% if(items.length>0) { %>
-        <table class="list-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Id</th>
-              <th>Event Name</th>
-              <th>Details</th>
-              <th>Date</th>
-              <th>Place</th>
-              <th>Capacity</th>
-              <th>Show</th>
-              <th>Edit</th>
-              <th>Eliminate</th>
-            </tr>
-          </thead>
-          <tbody>
-
-            <% for(var i=0; i<items.length;i++) { %>
+    <section>
+      <div class="container">
+        <h1>Event List</h1>
+        <% if(items.length>0) { %>
+          <table class="list-table">
+            <thead>
               <tr>
-                <td> <%=i%> </td>
-                <td> <%=items[i]._id%></a></td>
-                <td> <%= items[i].name%></a></td>
-                <td> <%= items[i].details%></a></td>
-                <td> <%= items[i].date%></a></td>
-                <td> <%= items[i].place_id%></a></td>
-                <td> <%= items[i].capacity%></a></td>
-                <td><a href="/items/show/<%= items[i]._id%> "> Show </td>
-                <td><a href="/items/edit/<%= items[i]._id%> "> Edit </a></td>
-                <td><a href="/items/delete/<%= items[i]._id%> "> Eliminate </a></td>
+                <th>#</th>
+                <th>Id</th>
+                <th>Event Name</th>
+                <th>Details</th>
+                <th>Date</th>
+                <th>Place</th>
+                <th>Capacity</th>
+                <th>Show</th>
+                <th>Edit</th>
+                <th>Eliminate</th>
               </tr>
-            <% } %>
-          </tbody>
-        </table>
-      <% } else { %>
-        <div>No events found</div>
-      <% } %>
-    </div>
-    <h3><a href="/items/create">Create new event</a></h3>
+            </thead>
+            <tbody>
+              <% for(var i=0; i<items.length;i++) { %>
+                <tr>
+                  <td> <%= i+1%> </td>
+                  <td> <%= items[i]._id%></a></td>
+                  <td> <%= items[i].name%></a></td>
+                  <td> <%= items[i].details%></a></td>
+                  <td> <%= items[i].date%></a></td>
+                  <td> <%= items[i].place_id%></a></td>
+                  <td> <%= items[i].capacity%></a></td>
+                  <td><a href="/items/show/<%= items[i]._id%> "> Show </td>
+                  <td><a href="/items/edit/<%= items[i]._id%> "> Edit </a></td>
+                  <td><a href="/items/delete/<%= items[i]._id%> "> Eliminate </a></td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        <% } else { %>
+          <div>No events found</div>
+        <% } %>
+      </div>
+      <h3 class="links"><a href="/items/create">Create new event</a></h3>
+    </section>
   </body>
   <script src="/js/navbar.js"></script>
 </html>

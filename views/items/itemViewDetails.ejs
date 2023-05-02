@@ -16,8 +16,10 @@
           </li>
           <li class="nav-item">
             <a href="/admins" class="nav-link">See all Admins</a>
-          </li class="nav-item">
-            <a href="/persons" class="nav-link">See all the users</a></li>
+          </li>
+          <li class="nav-item">
+            <a href="/users" class="nav-link">See all the users</a>
+          </li>
           <li class="nav-item">
             <a href="/items" class="nav-link">See all the events</a>
           </li>
@@ -38,56 +40,58 @@
         </div>
       </nav>
     </header>
-    <div class="container">
-      <h1>Event Detail</h1>
-      <table>
-        <tbody>
-          <tr>
-            <td>Id</td>
-            <td>:</td>
-            <td><%= item._id %></td>
-          </tr>
-          <tr>
-            <td>Name</td>
-            <td>:</td>
-            <td><%= item.name %></td>
-          </tr>
-          <tr>
-            <td>Details</td>
-            <td>:</td>
-            <td><%= item.details %></td>
-          </tr>
-          <tr>
-            <td>Date</td>
-            <td>:</td>
-            <td><%= item.date %></td>
-          </tr>
-          <tr>
-            <td>Place</td>
-            <td>:</td>
-            <td><%= item.place_id %></td>
-          </tr>
-          <tr>
-            <td>Capacity</td>
-            <td>:</td>
-            <td><%= item.capacity %></td>
-          </tr>
-          <tr>
-            <td>Picture</td>
-            <td>:</td>
-            <img src="/cidade-do-porto.jpg" class="card-img-top" alt="Image" />
-          </tr>
-          <tr>
-            <td>Tickets</td>
-            <td>:</td>
-            <td>
-              <a href="/items/<%= item._id %>/tickets">Watch all the tickets</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <h3><a href="/items">Watch all the events</a></h3>
+    <section>
+      <div class="container">
+        <h1>Event Detail</h1>
+        <table>
+          <tbody>
+            <tr>
+              <td>Id</td>
+              <td>:</td>
+              <td><%= item._id %></td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>:</td>
+              <td><%= item.name %></td>
+            </tr>
+            <tr>
+              <td>Details</td>
+              <td>:</td>
+              <td><%= item.details %></td>
+            </tr>
+            <tr>
+              <td>Date</td>
+              <td>:</td>
+              <td><%= item.date %></td>
+            </tr>
+            <tr>
+              <td>Place</td>
+              <td>:</td>
+              <td><%= item.place_id %></td>
+            </tr>
+            <tr>
+              <td>Capacity</td>
+              <td>:</td>
+              <td><%= item.capacity %></td>
+            </tr>
+            <tr>
+              <td>Picture</td>
+              <td>:</td>
+              <img src="/cidade-do-porto.jpg" class="card-img-top" alt="Image" />
+            </tr>
+            <tr>
+              <td>Tickets</td>
+              <td>:</td>
+              <td>
+                <a href="/items/<%= item._id %>/tickets">Watch all the tickets</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h3 class="links"><a href="/items">Watch all the events</a></h3>
+    </section>
   </body>
   <script src="/js/navbar.js"></script>
 </html>

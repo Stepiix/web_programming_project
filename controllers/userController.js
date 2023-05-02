@@ -1,53 +1,43 @@
 var mongoose = require('mongoose');
-var Item = require('../models/person');
-var Place = require('../models/place');
 var Person = require('../models/person');
 
-var itemController = {};
+var userController = {};
 
-// mostra todos items 
-itemController.showAll = function(req, res){
-    Person.find({}).exec((err, dbitems)=>{
+// Show all users 
+userController.showAll = function(req, res){
+    Person.find({}).exec((err, dbusers)=>{
         if (err){
-            console.log('Erro a ler');
+            console.log('Reading error');
             res.redirect('/error')
         } else {
-            console.log(dbitems);
-            res.render('persons/personList', {items: dbitems});
+            res.render('persons/personList', {users: dbusers});
         }
     })
 }
 
-// mostra 1 item por id
-itemController.show = function(req, res){
-    Person.findOne({_id:req.params.id}).exec((err, dbitem)=>{
+// Show 1 user by id
+userController.show = function(req, res){
+    Person.findOne({_id:req.params.id}).exec((err, dbuser)=>{
         if (err){
-            console.log('Erro a ler');
+            console.log('Reading error');
             res.redirect('/error')
         } else {
-            res.render('persons/personViewDetails', {item: dbitem});
+            res.render('persons/personViewDetails', {user: dbuser});
         }
     })
 }
 
-// form para criar 1 item
-itemController.formCreate = function(req,res){
-    Person.find({}).exec((err, dbplaces)=>{
-        if (err){
-            console.log('Erro a ler');
-            res.redirect('/error')
-        } else {
-            res.render('persons/createForm', {places: dbplaces});
-        }
-    })
+// Form to create 1 user
+userController.formCreate = function(req,res){
+    res.render('persons/createForm');
 }
 
-// cria 1 item como resposta a um post de um form
-itemController.create = function(req,res){
-    var item = new Person(req.body);
-    item.save((err)=>{
+// Create 1 user as a responde of a POST of a form
+userController.create = function(req,res){
+    var user = new Person(req.body);
+    user.save((err)=>{
         if (err){
-            console.log('Erro a gravar');
+            console.log('Saving error');
             res.redirect('/error')
         } else {
             res.redirect('/users');
@@ -55,30 +45,23 @@ itemController.create = function(req,res){
     })
 }
 
-// mostra 1 item para edicao
-itemController.formEdit = function(req, res){
-    Person.findOne({_id:req.params.id}).exec((err, dbitem)=>{
+// Show 1 user to edit
+userController.formEdit = function(req, res){
+    Person.findOne({_id:req.params.id}).exec((err, dbuser)=>{
         if (err){
-            console.log('Erro a ler');
+            console.log('Reading error');
             res.redirect('/error')
         } else {
-            Person.find({}).exec((err, dbplaces)=>{
-                if (err){
-                    console.log('Erro a ler');
-                    res.redirect('/error')
-                } else {
-                    res.render('persons/personEditDetails', {item: dbitem, places: dbplaces});
-                }
-            })
+            res.render('persons/personEditDetails', {user: dbuser});
         }
     })
 }
 
-// edita 1 item como resposta a um post de um form editar
-itemController.edit = function(req,res){
-    Person.findByIdAndUpdate(req.body._id, req.body, (err, editedItem)=>{
+// Edit 1 user as a response of a POST of and edit form
+userController.edit = function(req,res){
+    Person.findByIdAndUpdate(req.body._id, req.body, (err, editedUser)=>{
         if (err){
-            console.log('Erro a gravar');
+            console.log('Saving error');
             res.redirect('/error')
         } else {
             res.redirect('/users/show/'+req.body._id);
@@ -86,11 +69,11 @@ itemController.edit = function(req,res){
     } )
 }
 
-// elimina 1 item
-itemController.delete = function(req, res){
+// Eliminate 1 user
+userController.delete = function(req, res){
     Person.remove({_id:req.params.id}).exec((err)=>{
         if (err){
-            console.log('Erro a ler');
+            console.log('Reading error');
             
         } else {
             res.redirect('/users')
@@ -98,4 +81,4 @@ itemController.delete = function(req, res){
     })
 }
 
-module.exports = itemController;
+module.exports = userController;

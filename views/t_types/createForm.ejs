@@ -16,8 +16,10 @@
           </li>
           <li class="nav-item">
             <a href="/admins" class="nav-link">See all Admins</a>
-          </li class="nav-item">
-            <a href="/persons" class="nav-link">See all the users</a></li>
+          </li>
+          <li class="nav-item">
+            <a href="/users" class="nav-link">See all the users</a>
+          </li>
           <li class="nav-item">
             <a href="/items" class="nav-link">See all the events</a>
           </li>
@@ -38,31 +40,34 @@
         </div>
       </nav>
     </header>
-    <div class="container">
-      <h1>Create New Type of Ticket</h1>
-      <form action="/items/<%= event %>/tickets/allTypes" method="post">
-        <table>
-          <tbody>
-            <tr>
-              <td>Event ID</td>
-              <td><input type="hidden" name="event_id" value="<%= event %>"><%= event %></td>
-            </tr>
-            <tr>
-              <td>Name of type</td>
-              <td><input type="text" name="type" required></td>
-            </tr>
-            <tr>
-              <td>Price</td>
-              <td><input type="number" name="price" required/></td>
-            </tr>
-            <tr>
-              <td colspan="2"><button type="submit">Save</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
-    </div>
-    <h3><a href="/items/<%= event %>/tickets/allTypes">Watch all the types of ticket for this event</a></h3>
+    <section>
+      <div class="container">
+        <h1>Create New Type of Ticket</h1>
+        <form action="/items/<%= event %>/tickets/allTypes" method="post">
+          <table>
+            <tbody>
+              <tr>
+                <td>Event ID</td>
+                <td><input type="hidden" name="event_id" value="<%= event %>"><%= event %></td>
+              </tr>
+              <tr>
+                <td>Name of type</td>
+                <td><input type="text" name="type" required></td>
+              </tr>
+              <tr>
+                <td>Price</td>
+                <td><input type="number" name="price" required/></td>
+              </tr>
+              <tr>
+                <td colspan="2"><button type="submit">Save</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      <section>
+      </div>
+      <h3 class="links"><a href="/items/<%= event %>/tickets/allTypes">Watch all the types of ticket for this event</a></h3>
+    </section>
   </body>
   <script src="/js/navbar.js"></script>
 </html>

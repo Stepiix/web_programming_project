@@ -40,7 +40,7 @@ ticketController.showAll = function(req, res){
 
                             Event.findOne({_id:req.params.id_e}).exec((err, dbevent)=>{
                                 if (err){
-                                    console.log('Erro a ler');
+                                    console.log('Reading error - event');
                                     res.redirect('/error')
                                 } else {
                                     res.render('tickets/ticketList', {event: dbevent, sales: dbsales, types: dbtypes, tickets: dbtickets, customers: arrC});
@@ -56,65 +56,59 @@ ticketController.showAll = function(req, res){
 
 // Form to create many tickets
 ticketController.formCreate = function(req,res){ 
-    Event.findOne({_id:req.params.id_e}).exec((err, dbevent)=>{
+    Customer.find({}).exec((err, dbcustomers)=>{
         if (err){
-            console.log('Erro a ler');
+            console.log('Reading error - customer');
             res.redirect('/error')
         } else {
-            Ticket.find({event_id:dbevent._id}).exec((err, dbtickets)=>{
+            Event.findOne({_id:req.params.id_e}).exec((err, dbevent)=>{
                 if (err){
-                    console.log('Reading error - customer');
+                    console.log('Reading error - event');
                     res.redirect('/error')
                 } else {
-                    T_types.find({event_id:dbevent._id}).exec((err, dbtypes)=>{
+                    Ticket.find({event_id:dbevent._id}).exec((err, dbtickets)=>{
                         if (err){
-                            console.log('Reading error - type');
+                            console.log('Reading error - ticket');
                             res.redirect('/error')
                         } else {
-                            res.render('tickets/createForm', {event: dbevent, types: dbtypes, tickets: dbtickets});      
+                            T_types.find({event_id:dbevent._id}).exec((err, dbtypes)=>{
+                                if (err){
+                                    console.log('Reading error - type');
+                                    res.redirect('/error')
+                                } else {
+                                    res.render('tickets/createForm', {event: dbevent, types: dbtypes, tickets: dbtickets, customers: dbcustomers});      
+                                }
+                            })
                         }
                     })
                 }
-            })
+            })    
         }
     })
-    
 
     
 }
 
-
 // Create many tickets as response of POST of form
 ticketController.create = function(req,res){
-    var customer = new Customer(req.body);
-
-    customer.save((err)=>{
-        if (err){
-            console.log('Saving error - cust');
-            res.redirect('/error')
-        } else {}       
-    })
-
     for (var i=0; i<req.body.quantity;i++) {
         var ticket = new Ticket(req.body);
         
         var sale = new Sale()
-        sale.customer_id = customer._id
+        sale.customer_id = req.body.customer_id
         sale.ticket_id = ticket._id
         sale.event_id = req.params.id_e
         sale.save((err)=>{
             if (err){
-                console.log('Saving error-sale');
+                console.log('Saving error - Sale');
                 res.redirect('/error')
-            } else {
-                console.log(sale)
-            }       
+            } else {}       
         })
 
         ticket.sale_id = sale._id
         ticket.save((err)=>{
             if (err){
-                console.log('Saving error-ticket');
+                console.log('Saving error - Ticket');
                 res.redirect('/error')
             } else {}
         })
@@ -127,28 +121,26 @@ ticketController.create = function(req,res){
 ticketController.formEdit = function(req, res){
     Ticket.find({_id:req.params.id}).exec((err, dbticket)=>{
         if (err){
-            console.log('Reading error');
+            console.log('Reading error - ticket');
             res.redirect('/error')
         } else {
             T_types.find({}).exec((err, dbtypes)=>{
                 if (err){
-                    console.log('Reading error');
+                    console.log('Reading error - type');
                     res.redirect('/error')
                 } else {
                     res.render('tickets/ticketEditDetails', {ticket: dbticket[0], types: dbtypes});
                 }
             })
         }
-    })
-
-    
+    })   
 }
 
 // Edit 1 place as response of POST edit form
 ticketController.edit = function(req,res){
     Item.findByIdAndUpdate(req.body._id, req.body, (err, editedItem)=>{
         if (err){
-            console.log('Erro a gravar');
+            console.log('Saving error');
             res.redirect('/error')
         } else {
             res.redirect('/places/show/'+req.body._id);
@@ -158,13 +150,19 @@ ticketController.edit = function(req,res){
 
 // Eliminate 1 ticket
 ticketController.delete = function(req, res){
-    Ticket.remove({_id:req.params.id}).exec((err)=>{
+    Sale.remove({ticket_id:req.params.id}).exec((err)=>{
         if (err){
-            console.log('Erro a ler');
+            console.log('Reading error - Sale');
             res.redirect('/error')
         } else {
-            console.log('ok')
-            res.redirect('/items/'+req.params.id_e+'/tickets')
+            Ticket.remove({_id:req.params.id}).exec((err)=>{
+                if (err){
+                    console.log('Reading error - Ticket');
+                    res.redirect('/error')
+                } else {
+                    res.redirect('/items/'+req.params.id_e+'/tickets')
+                }
+            })
         }
     })
 }

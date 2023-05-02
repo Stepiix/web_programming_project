@@ -105,3 +105,9 @@ img {
   width: 400px;
   height: 300px;
 }
+section {
+  margin: 2rem 3rem;
+}
+.links{
+  margin: 1rem;
+}

@@ -16,8 +16,10 @@
           </li>
           <li class="nav-item">
             <a href="/admins" class="nav-link">See all Admins</a>
-          </li class="nav-item">
-            <a href="/persons" class="nav-link">See all the users</a></li>
+          </li>
+          <li class="nav-item">
+            <a href="/users" class="nav-link">See all the users</a>
+          </li>
           <li class="nav-item">
             <a href="/items" class="nav-link">See all the events</a>
           </li>
@@ -38,28 +40,30 @@
         </div>
       </nav>
     </header>
-    <div class="container">
-      <h1>Create New Place</h1>
-      <form action="/places/create" method="post">
-        <table>
-          <tbody>
-            <tr>
-              <td>Name</td>
-              <td><input type="text" name="name" required/></td>
-            </tr>
-            <tr>
-              <td>Address</td>
-              <td><input type="text" name="address" required/></td>
-            </tr>
-            <tr>
-              <td colspan="2"><button type="submit">Save</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
-    </div>
-    <h3><a href="/places">See all places</a></h3>
-    <h3><a href="/items">See all events</a></h3>
+    <section>
+      <div class="container">
+        <h1>Create New Place</h1>
+        <form action="/places/create" method="post">
+          <table>
+            <tbody>
+              <tr>
+                <td>Name</td>
+                <td><input type="text" name="name" required/></td>
+              </tr>
+              <tr>
+                <td>Address</td>
+                <td><input type="text" name="address" required/></td>
+              </tr>
+              <tr>
+                <td colspan="2"><button type="submit">Save</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+      <h3 class="links"><a href="/places">See all places</a></h3>
+      <h3 class="links"><a href="/items">See all events</a></h3>
+    </section>
   </body>
   <script src="/js/navbar.js"></script>
 </html>
