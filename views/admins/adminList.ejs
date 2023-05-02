@@ -19,13 +19,7 @@
             <a href="/admins" class="nav-link">See all Admins</a>
           </li>
           <li class="nav-item">
-            <a href="/users" class="nav-link">See all the users</a>
-          </li>
-          <li class="nav-item">
             <a href="/items" class="nav-link">See all the events</a>
-          </li>
-          <li class="nav-item">
-            <a href="/places" class="nav-link">See all the places</a>
           </li>
           <li class="nav-item">
             <a href="/places" class="nav-link">See all the places</a>
@@ -62,8 +56,8 @@
   
               <% for(var i=0; i<items.length;i++) { %>
                 <tr>
-                  <td> <%=i%> </td>
-                  <td> <%=items[i]._id%></a></td>
+                  <td> <%= i+1%> </td>
+                  <td> <%= items[i]._id%></a></td>
                   <td> <%= items[i].name%></a></td>
                   <td> <%= items[i].phonenumber%></a></td>
                   <td> <%= items[i].email%></a></td>

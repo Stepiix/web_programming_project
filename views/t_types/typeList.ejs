@@ -19,13 +19,7 @@
             <a href="/admins" class="nav-link">See all Admins</a>
           </li>
           <li class="nav-item">
-            <a href="/users" class="nav-link">See all the users</a>
-          </li>
-          <li class="nav-item">
             <a href="/items" class="nav-link">See all the events</a>
-          </li>
-          <li class="nav-item">
-            <a href="/places" class="nav-link">See all the places</a>
           </li>
           <li class="nav-item">
             <a href="/places" class="nav-link">See all the places</a>
@@ -66,7 +60,7 @@
               <% for(var i=0; i<types.length;i++) { %>
               <% if (types[i].event_id == event) { %>
                 <tr>
-                  <td> <%=i%> </td>
+                  <td> <%= i+1%> </td>
                   <td> <%= types[i].event_id%></td>
                   <td> <%= types[i]._id%></td>
                   <td> <%= types[i].type%></td>

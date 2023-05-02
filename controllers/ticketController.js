@@ -138,12 +138,12 @@ ticketController.formEdit = function(req, res){
 
 // Edit 1 place as response of POST edit form
 ticketController.edit = function(req,res){
-    Item.findByIdAndUpdate(req.body._id, req.body, (err, editedItem)=>{
+    Ticket.findByIdAndUpdate(req.body._id, req.body, (err, editedEvent)=>{
         if (err){
             console.log('Saving error');
             res.redirect('/error')
         } else {
-            res.redirect('/places/show/'+req.body._id);
+            res.redirect('/items/'+req.params.id_e+'/tickets');
         }
     } )
 }

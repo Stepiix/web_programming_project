@@ -53,11 +53,11 @@
               </tr>
               <tr>
                 <td>Phone Number</td>
-                <td><input type="text" name="phonenumber" /></td>
+                <td><input type="text" name="phonenumber" minlength="9"/></td>
               </tr>
               <tr>
                 <td>Email address</td>
-                <td><input type="text" name="email" /></td>
+                <td><input type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" /></td>
               </tr>
               <tr>
                 <td colspan="2"><button type="submit">Save</button></td>
