@@ -1,34 +1,34 @@
 var mongoose = require('mongoose');
-var Item = require('../models/place');
+var Place = require('../models/place');
 var Sale = require('../models/sale');
 
 
-var itemController = {};
+var placeController = {};
 
 // Show all the places 
-itemController.showAll = function(req, res){
-    Item.find({}).exec((err, dbitems)=>{
+placeController.showAll = function(req, res){
+    Place.find({}).exec((err, dbplaces)=>{
         if (err){
-            console.log('Erro a ler');
+            console.log('Reading error');
             res.redirect('/error')
         } else {
-            console.log(dbitems);
-            res.render('places/placeList', {items: dbitems});
+            console.log(dbplaces);
+            res.render('places/placeList', {places: dbplaces});
         }
     })
 }
 
 // Form to create 1 place
-itemController.formCreate = function(req,res){
+placeController.formCreate = function(req,res){
     res.render('places/createForm');
 }
 
 // Create 1 place as response of POST of form
-itemController.create = function(req,res){
-    var item = new Item(req.body);
-    item.save((err)=>{
+placeController.create = function(req,res){
+    var place = new Place(req.body);
+    place.save((err)=>{
         if (err){
-            console.log('Erro a gravar');
+            console.log('Saving error');
             res.redirect('/error')
         } else {
             res.redirect('/places');
@@ -37,22 +37,22 @@ itemController.create = function(req,res){
 }
 
 // Show 1 place to edit
-itemController.formEdit = function(req, res){
-    Item.findOne({_id:req.params.id}).exec((err, dbitem)=>{
+placeController.formEdit = function(req, res){
+    Place.findOne({_id:req.params.id}).exec((err, dbplace)=>{
         if (err){
-            console.log('Erro a ler');
+            console.log('Reading error');
             res.redirect('/error')
         } else {
-            res.render('places/placeEditDetails', {item: dbitem});
+            res.render('places/placeEditDetails', {place: dbplace});
         }
     })
 }
 
 // Edit 1 place as response of POST edit form
-itemController.edit = function(req,res){
-    Item.findByIdAndUpdate(req.body._id, req.body, (err, editedItem)=>{
+placeController.edit = function(req,res){
+    Place.findByIdAndUpdate(req.body._id, req.body, (err, editedItem)=>{
         if (err){
-            console.log('Erro a gravar');
+            console.log('Reading error');
             res.redirect('/error')
         } else {
             res.redirect('/places');
@@ -61,10 +61,10 @@ itemController.edit = function(req,res){
 }
 
 // Eliminate 1 place
-itemController.delete = function(req, res){
-    Item.remove({_id:req.params.id}).exec((err)=>{
+placeController.delete = function(req, res){
+    Place.remove({_id:req.params.id}).exec((err)=>{
         if (err){
-            console.log('Erro a ler');
+            console.log('Reading error');
             
         } else {
             res.redirect('/places')
@@ -72,4 +72,4 @@ itemController.delete = function(req, res){
     })
 }
 
-module.exports = itemController;
+module.exports = placeController;

@@ -51,7 +51,6 @@
               </tr>
             </thead>
             <tbody>
-  
               <% for(var i=0; i<sales.length; i++) { %>
                 <tr>
                   <td> <%= i+1%> </td>
@@ -64,7 +63,7 @@
                     <% } else {} }%>
                   </td>
                   <td>
-                    <% for(var j=0; j<users.length; j++) { %>
+                    <% for(var j=0; j<events.length; j++) { %>
                       <% if(events[j]._id==sales[i].event_id) { %>
                         <a href="/items/show/<%= events[j]._id%> "><%= events[j].name%></a>
                     <% } else {} }%>

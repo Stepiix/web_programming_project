@@ -14,8 +14,14 @@ itemController.showAll = function(req, res){
             console.log('Erro a ler');
             res.redirect('/error')
         } else {
-            console.log(dbitems);
-            res.render('items/itemList', {items: dbitems});
+            Place.find({}).exec((err, dbplaces)=>{
+                if (err){
+                    console.log('Reading error - Place');
+                    res.redirect('/error')
+                } else {
+                    res.render('items/itemList', {items: dbitems, places: dbplaces});
+                }
+            })
         }
     })
 }
@@ -27,7 +33,14 @@ itemController.show = function(req, res){
             console.log('Erro a ler');
             res.redirect('/error')
         } else {
-            res.render('items/itemViewDetails', {item: dbitem});
+            Place.findOne({_id:dbitem.place_id}).exec((err, dbplace)=>{
+                if (err){
+                    console.log('Reading error - Place');
+                    res.redirect('/error')
+                } else {
+                    res.render('items/itemViewDetails', {item: dbitem, place: dbplace});
+                }
+            })
         }
     })
 }
@@ -46,14 +59,27 @@ itemController.formCreate = function(req,res){
 
 // cria 1 item como resposta a um post de um form
 itemController.create = function(req,res){
-    var item = new Item(req.body);
-    item.save((err)=>{
+    Item.findOne({date:req.body.date, place_id:req.body.place_id}).exec((err, dbitem)=>{
         if (err){
-            console.log('Erro a gravar');
+            console.log('Reading error - Event');
             res.redirect('/error')
         } else {
-            console.log(item)
-            res.redirect('/items');
+            if (dbitem != null) {
+                console.log(dbitem);
+                console.log('Saving error - This event already exists');
+                res.redirect('/items/create')
+            } else {
+                var item = new Item(req.body);
+                item.save((err)=>{
+                    if (err){
+                        console.log('Saving error');
+                        res.redirect('/error');
+                    } else {
+                        console.log(item)
+                        res.redirect('/items');
+                    }
+                })
+            }
         }
     })
 }
@@ -67,7 +93,7 @@ itemController.formEdit = function(req, res){
         } else {
             Place.find({}).exec((err, dbplaces)=>{
                 if (err){
-                    console.log('Erro a ler');
+                    console.log('Reading error - Places');
                     res.redirect('/error')
                 } else {
                     res.render('items/itemEditDetails', {item: dbitem, places: dbplaces});
@@ -120,7 +146,6 @@ itemController.delete = function(req, res){
             })
         }
     })
-
 }
 
 module.exports = itemController;
