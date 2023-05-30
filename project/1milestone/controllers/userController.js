@@ -11,6 +11,7 @@ userController.showAll = function(req, res){
             res.redirect('/error')
         } else {
             res.render('persons/personList', {users: dbusers});
+            // res.json(dbusers);
         }
     })
 }
