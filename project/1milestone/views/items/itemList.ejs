@@ -62,7 +62,12 @@
                   <td> <%= items[i].name%></a></td>
                   <td> <%= items[i].details%></a></td>
                   <td> <%= items[i].date%></a></td>
-                  <td> <%= items[i].place_id%></a></td>
+                  <td>
+                    <% for(var j=0; j<places.length; j++) { %>
+                      <% if(places[j]._id==items[i].place_id) { %>
+                        <%= places[j].name%>
+                    <% } else {} }%>
+                  </td>
                   <td> <%= items[i].capacity%></a></td>
                   <td><a href="/items/show/<%= items[i]._id%> "> Show </td>
                   <td><a href="/items/edit/<%= items[i]._id%> "> Edit </a></td>

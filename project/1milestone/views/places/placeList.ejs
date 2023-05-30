@@ -38,26 +38,27 @@
     <section>
       <div class="container">
         <h1>Place List</h1>
-        <% if(items.length>0) { %>
+        <% if(places.length>0) { %>
           <table class="list-table">
             <thead>
               <tr>
                 <th>#</th>
                 <th>Place Name</th>
                 <th>Address</th>
+                <th>Create new ticket</th>
                 <th>Edit</th>
                 <th>Eliminate</th>
               </tr>
             </thead>
             <tbody>
-  
-              <% for(var i=0; i<items.length;i++) { %>
+              <% for(var i=0; i<places.length;i++) { %>
                 <tr>
                   <td> <%= i+1%> </td>
-                  <td> <%= items[i].name%></td>
-                  <td> <%= items[i].address%></a></td>
-                  <td><a href="/places/edit/<%= items[i]._id%> "> Edit </a></td>
-                  <td><a href="/places/delete/<%= items[i]._id%> "> Eliminate </a></td>
+                  <td> <%= places[i].name%></td>
+                  <td> <%= places[i].address%></a></td>
+                  <td><a href="/places/<%= places[i]._id %>/tickets">New ticket</a></td>
+                  <td><a href="/places/edit/<%= places[i]._id%> "> Edit </a></td>
+                  <td><a href="/places/delete/<%= places[i]._id%> "> Eliminate </a></td>
                 </tr>
               <% } %>
             </tbody>
