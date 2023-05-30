@@ -13,6 +13,7 @@ import { AlleventsComponent } from './allevents/allevents.component';
 import { MycartComponent } from './mycart/mycart.component';
 import { RegisterComponent } from './register/register.component';
 import { SignupComponent } from './signup/signup.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SignupComponent } from './signup/signup.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,

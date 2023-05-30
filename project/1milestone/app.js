@@ -1,9 +1,10 @@
 //
 var createError = require('http-errors');
-var express = require('express'); 
+var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
 
 var mongoose = require('mongoose');
 
@@ -17,10 +18,10 @@ const { log } = require('console');
 
 mongoose.Promise = global.Promise
 
-mongoose.connect('mongodb+srv://demo:6uCdbSDByPH4ZaFr@cluster0.rlmhow5.mongodb.net/?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true} ) //find here https://gitlab.estg.ipp.pt/paw/exemplos-pr-ticos/fp6/-/blob/master/app.js
-// mongoose.connect('mongodb://localhost/items')
-  .then(()=> console.log(' connected to DB!'))
-  .catch(()=> console.log(' error connecting to DB!'))
+mongoose.connect('mongodb+srv://demo:6uCdbSDByPH4ZaFr@cluster0.rlmhow5.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }) //find here https://gitlab.estg.ipp.pt/paw/exemplos-pr-ticos/fp6/-/blob/master/app.js
+  // mongoose.connect('mongodb://localhost/items')
+  .then(() => console.log(' connected to DB!'))
+  .catch(() => console.log(' error connecting to DB!'))
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
 app.use('/', indexRouter);
 app.use('/items', itemsRouter);
@@ -42,12 +44,12 @@ app.use('/users', userRouter);
 app.use('/admins', adminRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

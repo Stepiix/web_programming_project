@@ -8,18 +8,36 @@ var Sale = require('../models/sale');
 var itemController = {};
 
 // mostra todos items 
-itemController.showAll = function(req, res){
-    Item.find({}).exec((err, dbitems)=>{
-        if (err){
+itemController.showAll = function (req, res) {
+    Item.find({}).exec((err, dbitems) => {
+        if (err) {
             console.log('Erro a ler');
             res.redirect('/error')
         } else {
-            Place.find({}).exec((err, dbplaces)=>{
-                if (err){
+            Place.find({}).exec((err, dbplaces) => {
+                if (err) {
                     console.log('Reading error - Place');
                     res.redirect('/error')
                 } else {
-                    res.render('items/itemList', {items: dbitems, places: dbplaces});
+                    res.render('items/itemList', { items: dbitems, places: dbplaces });
+                }
+            })
+        }
+    })
+}
+
+itemController.showAll2 = function (req, res) {
+    Item.find({}).exec((err, dbitems) => {
+        if (err) {
+            console.log('Erro a ler');
+            res.status(500).json({ error: err });
+        } else {
+            Place.find({}).exec((err, dbplaces) => {
+                if (err) {
+                    console.log('Reading error - Place');
+                    res.status(404).json({ error: 'Reading error - Place' });
+                } else {
+                    res.status(200).json(dbitems);
                 }
             })
         }
@@ -27,18 +45,18 @@ itemController.showAll = function(req, res){
 }
 
 // mostra 1 item por id
-itemController.show = function(req, res){
-    Item.findOne({_id:req.params.id}).exec((err, dbitem)=>{
-        if (err){
+itemController.show = function (req, res) {
+    Item.findOne({ _id: req.params.id }).exec((err, dbitem) => {
+        if (err) {
             console.log('Erro a ler');
             res.redirect('/error')
         } else {
-            Place.findOne({_id:dbitem.place_id}).exec((err, dbplace)=>{
-                if (err){
+            Place.findOne({ _id: dbitem.place_id }).exec((err, dbplace) => {
+                if (err) {
                     console.log('Reading error - Place');
                     res.redirect('/error')
                 } else {
-                    res.render('items/itemViewDetails', {item: dbitem, place: dbplace});
+                    res.render('items/itemViewDetails', { item: dbitem, place: dbplace });
                 }
             })
         }
@@ -46,21 +64,21 @@ itemController.show = function(req, res){
 }
 
 // form para criar 1 item
-itemController.formCreate = function(req,res){
-    Place.find({}).exec((err, dbplaces)=>{
-        if (err){
+itemController.formCreate = function (req, res) {
+    Place.find({}).exec((err, dbplaces) => {
+        if (err) {
             console.log('Erro a ler');
             res.redirect('/error')
         } else {
-            res.render('items/createForm', {places: dbplaces});
+            res.render('items/createForm', { places: dbplaces });
         }
     })
 }
 
 // cria 1 item como resposta a um post de um form
-itemController.create = function(req,res){
-    Item.findOne({date:req.body.date, place_id:req.body.place_id}).exec((err, dbitem)=>{
-        if (err){
+itemController.create = function (req, res) {
+    Item.findOne({ date: req.body.date, place_id: req.body.place_id }).exec((err, dbitem) => {
+        if (err) {
             console.log('Reading error - Event');
             res.redirect('/error')
         } else {
@@ -70,8 +88,8 @@ itemController.create = function(req,res){
                 res.redirect('/items/create')
             } else {
                 var item = new Item(req.body);
-                item.save((err)=>{
-                    if (err){
+                item.save((err) => {
+                    if (err) {
                         console.log('Saving error');
                         res.redirect('/error');
                     } else {
@@ -85,18 +103,18 @@ itemController.create = function(req,res){
 }
 
 // mostra 1 item para edicao
-itemController.formEdit = function(req, res){
-    Item.findOne({_id:req.params.id}).exec((err, dbitem)=>{
-        if (err){
+itemController.formEdit = function (req, res) {
+    Item.findOne({ _id: req.params.id }).exec((err, dbitem) => {
+        if (err) {
             console.log('Erro a ler');
             res.redirect('/error')
         } else {
-            Place.find({}).exec((err, dbplaces)=>{
-                if (err){
+            Place.find({}).exec((err, dbplaces) => {
+                if (err) {
                     console.log('Reading error - Places');
                     res.redirect('/error')
                 } else {
-                    res.render('items/itemEditDetails', {item: dbitem, places: dbplaces});
+                    res.render('items/itemEditDetails', { item: dbitem, places: dbplaces });
                 }
             })
         }
@@ -104,36 +122,36 @@ itemController.formEdit = function(req, res){
 }
 
 // edita 1 item como resposta a um post de um form editar
-itemController.edit = function(req,res){
-    Item.findByIdAndUpdate(req.body._id, req.body, (err, editedItem)=>{
-        if (err){
+itemController.edit = function (req, res) {
+    Item.findByIdAndUpdate(req.body._id, req.body, (err, editedItem) => {
+        if (err) {
             console.log('Erro a gravar');
             res.redirect('/error')
         } else {
-            res.redirect('/items/show/'+req.body._id);
+            res.redirect('/items/show/' + req.body._id);
         }
-    } )
+    })
 }
 
 // elimina 1 item
-itemController.delete = function(req, res){
-    Sale.remove({event_id:req.params.id}).exec((err)=>{
-        if (err){
+itemController.delete = function (req, res) {
+    Sale.remove({ event_id: req.params.id }).exec((err) => {
+        if (err) {
             console.log('Reading error - Sale');
             res.redirect('/error')
         } else {
-            Type.remove({event_id:req.params.id}).exec((err)=>{
-                if (err){
+            Type.remove({ event_id: req.params.id }).exec((err) => {
+                if (err) {
                     console.log('Reading error - Type');
                     res.redirect('/error')
                 } else {
-                    Ticket.remove({event_id:req.params.id}).exec((err)=>{
-                        if (err){
+                    Ticket.remove({ event_id: req.params.id }).exec((err) => {
+                        if (err) {
                             console.log('Reading error - Ticket');
                             res.redirect('/error')
                         } else {
-                            Item.remove({_id:req.params.id}).exec((err)=>{
-                                if (err){
+                            Item.remove({ _id: req.params.id }).exec((err) => {
+                                if (err) {
                                     console.log('Reading error - Event');
                                     res.redirect('/error')
                                 } else {

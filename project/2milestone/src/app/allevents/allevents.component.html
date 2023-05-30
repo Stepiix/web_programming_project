@@ -1,1 +1,6 @@
-<p>allevents works!</p>
+<table>
+  <tr *ngFor="let event of listOfEvents">
+    <td>id: {{ event._id }}</td>
+    <td>name: {{ event.name }}</td>
+  </tr>
+</table>
