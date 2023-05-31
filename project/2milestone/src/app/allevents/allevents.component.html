@@ -1,6 +1,11 @@
-<table>
-  <tr *ngFor="let event of listOfEvents">
-    <td>id: {{ event._id }}</td>
-    <td>name: {{ event.name }}</td>
-  </tr>
-</table>
+<link rel="stylesheet" src="../../styles.css">
+<div id="event-page">
+  <table class="event" *ngFor="let event of listOfEvents">
+    <tr>
+      <td id="event-name">{{ event.name }}</td>
+      <td id="event-date">{{ event.date }}</td>
+    </tr>
+    <tr><td id="event-place">{{ event.place_id }}</td></tr>
+    <tr><td id="event-details">{{ event.details }}</td></tr>
+  </table>
+</div>

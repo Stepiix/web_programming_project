@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventServiceService } from '../services/event/event-service.service';
-import {eventPlace} from "../models/event";
+import { eventPlace } from "../models/event";
 
 @Component({
   selector: 'app-allevents',
@@ -19,7 +19,7 @@ export class AlleventsComponent implements OnInit{
   getAllEvents(){
     this.eventService.getAllEvents().subscribe({
       next: (data)=>{
-this.listOfEvents = data;
+        this.listOfEvents = data;
       },
       error: err=>{
 
