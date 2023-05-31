@@ -18,6 +18,17 @@ placeController.showAll = function(req, res){
     })
 }
 
+placeController.showAll2 = function(req, res){
+    Place.find({}).exec((err, dbplaces) => {
+        if (err){
+            console.log('Reading error');
+            res.status(500).json({ error: err })
+        } else {
+            res.status(200).json(dbplaces);
+        }
+    })
+}
+
 // Form to create 1 place
 placeController.formCreate = function(req,res){
     res.render('places/createForm');

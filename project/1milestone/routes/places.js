@@ -4,6 +4,7 @@ var placeController = require('../controllers/placeController');
 var ticketController = require('../controllers/ticketController');
 
 router.get('/', placeController.showAll ); //default
+router.get('/showAll', placeController.showAll2 ); //Json
 router.get('/create', placeController.formCreate);
 router.post('/create', placeController.create);
 router.get('/edit/:id', placeController.formEdit);
