@@ -9,11 +9,11 @@ import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent},
-  { path: 'allevents', component: AlleventsComponent},
-  { path: 'mycart', component: MycartComponent},
-  { path: 'register', component: RegisterComponent},
-  { path: 'signup', component: SignupComponent},
+  { path: 'home', component: HomeComponent },
+  { path: 'allevents', component: AlleventsComponent },
+  { path: 'mycart', component: MycartComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'signup', component: SignupComponent },
 ]
 
 @NgModule({
