@@ -28,6 +28,18 @@ userController.show = function (req, res) {
     })
 }
 
+userController.check = function (req, res) {
+    Person.findOne({ email: req.body.e, name: req.body.pw }).exec((err, dbuser) => {
+        if (err) {
+            console.log('Reading error');
+            res.redirect('/error')
+        } else {
+            console.log(dbuser);
+            res.send(dbuser)
+        }
+    })
+}
+
 // Form to create 1 user
 userController.formCreate = function (req, res) {
     res.render('persons/createForm');

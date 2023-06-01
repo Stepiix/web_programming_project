@@ -1,6 +1,6 @@
-export class User {
-    user_id: string = "";
+export class user{
+    _id: string = "";
     name: string = "";
-    phoneNumber: string = "";
     email: string = "";
+    password: string = "";
 }
