@@ -35,7 +35,7 @@ userController.check = function (req, res) {
             res.redirect('/error')
         } else {
             console.log(dbuser);
-            res.send(dbuser)
+            res.send(dbuser)           
         }
     })
 }

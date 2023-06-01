@@ -8,7 +8,7 @@ import { user } from '../models/user';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  user: user = new user;
+  user: any;
   
 
   constructor(private authServive: AuthService) { }
@@ -18,7 +18,11 @@ export class SignupComponent {
     let password = (document.getElementById("password") as HTMLInputElement).value
 
     this.authServive.login(email, password).subscribe((user : any)=>{
-      this.user = user;
+      if(user == null) {
+        alert('There\'s no account with these parameters')
+      } else {
+        alert(user.name + ', you\' re logged in!');
+      }
     })
   }
 
