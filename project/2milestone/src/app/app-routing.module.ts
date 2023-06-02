@@ -1,4 +1,4 @@
-import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'allevents', component: AlleventsComponent },
   { path: 'mycart', component: MycartComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'signup', component: SignupComponent },
+  { path: 'login', component: LoginComponent },
 ]
 
 @NgModule({

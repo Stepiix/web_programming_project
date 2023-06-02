@@ -12,7 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { AlleventsComponent } from './allevents/allevents.component';
 import { MycartComponent } from './mycart/mycart.component';
 import { RegisterComponent } from './register/register.component';
-import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -23,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     AlleventsComponent,
     MycartComponent,
     RegisterComponent,
-    SignupComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

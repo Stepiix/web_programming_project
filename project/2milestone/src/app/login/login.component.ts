@@ -4,10 +4,10 @@ import { user } from '../models/user';
 
 @Component({
   selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class SignupComponent {
+export class LoginComponent {
   ePattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
   pwPattern =/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 
