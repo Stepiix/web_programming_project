@@ -40,6 +40,30 @@ userController.check = function (req, res) {
     })
 }
 
+userController.register = function (req, res) {
+    Person.findOne({ email: req.body.email }).exec((err, dbuser) => {
+        if (err) {
+            console.log('Reading error');
+            res.redirect('/error')
+        } else {
+            if (dbuser != null) {
+                console.log('There is already an account with that mail!');
+                res.send(null)
+            } else {
+                var user = new Person(req.body);
+                user.save((err) => {
+                    if (err) {
+                        console.log('Saving error');
+                        res.redirect('/error')
+                    } else {
+                        res.send(user);
+                    }
+                })
+            }
+        }
+    })
+}
+
 // Form to create 1 user
 userController.formCreate = function (req, res) {
     res.render('persons/createForm');

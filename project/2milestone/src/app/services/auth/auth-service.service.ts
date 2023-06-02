@@ -19,6 +19,10 @@ export class AuthService {
   login(email: string, password:string): Observable<AuthResponse>{
     return this.http.post<AuthResponse>(endpoint+"login", {e: email, pw: password}, options);
   }
+
+  register(username: string, e: string, pw: string, pn: string) {
+    return this.http.post<AuthResponse>(endpoint+"register", {name: username, email: e, password: pw, phonenumber: pn}, options);
+  }
 }
 
 export interface AuthResponse{ }
