@@ -53,12 +53,12 @@ userController.show = function (req, res) {
 // }
 
 userController.check = function(req, res){
-    User.findOne({ email: req.body.email }, function (err, user) {
+    Person.findOne({ email: req.body.e }, function (err, user) {
         if (err) return res.status(500).send('Error on the server.');
         if (!user) return res.status(404).send('No user found.');
         
         // check if the password is valid
-        var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+        var passwordIsValid = bcrypt.compareSync(req.body.pw, user.password);
         
         if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
 
@@ -74,53 +74,53 @@ userController.check = function(req, res){
 }
 
 
-userController.register = function (req, res) {
-    Person.findOne({ email: req.body.email }).exec((err, dbuser) => {
-        if (err) {
-            console.log('Reading error');
-            res.redirect('/error')
-        } else {
-            if (dbuser != null) {
-                console.log('There is already an account with that mail!');
-                res.send(null)
-            } else {
-                var user = new Person(req.body);
-                user.save((err) => {
-                    if (err) {
-                        console.log('Saving error');
-                        res.redirect('/error')
-                    } else {
-                        res.send(user);
-                    }
-                })
-            }
-        }
-    })
-}
-
-// userController.register = function(req, res){
-//     console.log("ahoj");
-//     var hashedPassword = bcrypt.hashSync(req.body.password, 8);
-//     console.log("cau");
-//     User.create({
-//         name : req.body.name || '',
-//         email : req.body.email,
-//         password : hashedPassword,
-//         role: req.body.email || "USER"
-//     }, 
-//     function (err, user) {
-//         console.log("kde ses");
-//         if (err) return res.status(500).json(err);
-    
-//         // if user is registered without errors
-//         // create a token
-//         var token = jwt.sign({ id: user._id }, config.secret, {
-//         expiresIn: 86400 // expires in 24 hours
-//         });
-
-//         res.status(200).send({ auth: true, token: token });
-//     });
+// userController.register = function (req, res) {
+//     Person.findOne({ email: req.body.email }).exec((err, dbuser) => {
+//         if (err) {
+//             console.log('Reading error');
+//             res.redirect('/error')
+//         } else {
+//             if (dbuser != null) {
+//                 console.log('There is already an account with that mail!');
+//                 res.send(null)
+//             } else {
+//                 var user = new Person(req.body);
+//                 user.save((err) => {
+//                     if (err) {
+//                         console.log('Saving error');
+//                         res.redirect('/error')
+//                     } else {
+//                         res.send(user);
+//                     }
+//                 })
+//             }
+//         }
+//     })
 // }
+
+userController.register = function(req, res){
+    console.log("ahoj");
+    var hashedPassword = bcrypt.hashSync(req.body.password, 8);
+    console.log("cau");
+    Person.create({
+        name : req.body.name || '',
+        email : req.body.email,
+        password : hashedPassword,
+        role: req.body.email || "USER"
+    }, 
+    function (err, user) {
+        console.log("kde ses");
+        if (err) return res.status(500).json(err);
+    
+        // if user is registered without errors
+        // create a token
+        var token = jwt.sign({ id: user._id }, config.secret, {
+        expiresIn: 86400 // expires in 24 hours
+        });
+
+        res.status(200).send({ auth: true, token: token });
+    });
+}
 
 userController.verifyToken = function(req, res, next) {
 
