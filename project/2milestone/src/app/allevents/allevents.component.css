@@ -1,3 +1,19 @@
+#filters-div {
+    margin: 20px 10px;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.filter {
+    margin: 0 5px;
+    padding: 5px;
+    background-color: lightblue;
+    border-radius: 10px;
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 15px;
+}
+
 #event-page {
     display: flex;
     justify-content: flex-start;

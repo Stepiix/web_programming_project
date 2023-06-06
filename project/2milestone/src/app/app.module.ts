@@ -14,6 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     MycartComponent,
     RegisterComponent,
     LoginComponent,
+    ProfilePageComponent,
   ],
   imports: [
     BrowserModule,

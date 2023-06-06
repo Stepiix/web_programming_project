@@ -5,14 +5,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { AlleventsComponent } from './allevents/allevents.component';
 import { MycartComponent } from './mycart/mycart.component';
 import { RegisterComponent } from './register/register.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { LoginGuard } from './guards/login-guard.guard';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 const routes: Routes = [
   { path: 'allevents', component: AlleventsComponent },
   { path: 'mycart', component: MycartComponent , canActivate: [LoginGuard]},
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfilePageComponent }
 ]
 
 @NgModule({

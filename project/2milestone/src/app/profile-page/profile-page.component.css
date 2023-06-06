@@ -1,0 +1,42 @@
+#profile-page {
+    padding: auto;
+    padding-top: 30px;
+    height: 100%;
+    background-image: url("https://images2.alphacoders.com/995/995170.jpg");
+}
+
+#profile {
+    align-self: center;
+    justify-items: center;
+    width: 600px;
+    margin: auto;
+    padding: 30px 60px;
+    border: 1px solid midnightblue;
+    border-radius: 20px;
+    background-color: rgb(240, 240, 240);
+}
+
+#name {
+    padding: 10px 0;
+    text-align: center;
+    font-family: 'Geologica', sans-serif;
+    font-weight: 500;
+    font-size: 35px;
+    color: midnightblue;
+}
+
+.infos-title {
+    padding: 10px 0;
+    text-align: center;
+    font-family: 'Geologica', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: midnightblue;
+}
+
+.infos {
+    padding: 10px 0;
+    text-align: center;
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 17px;
+}

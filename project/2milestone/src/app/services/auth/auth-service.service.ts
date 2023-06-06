@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { user } from "./../../models/user";
+import { user } from '../../models/user';
+
 
 const endpoint = "http://localhost:3000/users/";
 const options = {
@@ -22,6 +23,23 @@ export class AuthService {
 
   register(username: string, e: string, pw: string, pn: string) {
     return this.http.post<any>(endpoint+"register", {name: username, email: e, password: pw, phonenumber: pn}, options);
+  }
+
+  // getInfo() : any{
+  //   let local = localStorage.getItem('currentUser')
+  //   if(local != null)
+  //     return this.http.get<user>(endpoint + "get", { headers: new HttpHeaders({'x-acces-token': JSON.parse(local).token}) });
+  //   return {
+  //     _id: '',
+  //     name: '',
+  //     email: '',
+  //     phonenumber: '',
+  //     password: ''
+  //   };
+  // }
+
+  logout() {
+    localStorage.removeItem('currentUser');
   }
 }
 

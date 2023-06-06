@@ -5,7 +5,9 @@
 
   <a mat-button routerLink="/">Home</a>
   <a mat-button routerLink="allevents">All events</a>
-  <a mat-button routerLink="mycart">My cart</a>
-  <a mat-button routerLink="register">Register</a>
-  <a mat-raised-button color="accent" routerLink="login">Login</a>
+  <a mat-button routerLink="mycart">My cart<mat-icon>shopping_cart</mat-icon></a>
+  <a mat-button routerLink="register" *ngIf="currentUserExists()">Register</a>
+  <a mat-raised-button color="accent" routerLink="login" *ngIf="currentUserExists()">Login</a>
+  <a mat-raised-button color="warn" (click)="logout()" *ngIf="!currentUserExists()">Logout</a>
+  <a mat-mini-fab color="primary" routerLink="profile" id="profile" *ngIf="!currentUserExists()"><mat-icon>account_circle</mat-icon></a>
 </mat-toolbar>
