@@ -2,7 +2,6 @@ import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { AlleventsComponent } from './allevents/allevents.component';
 import { MycartComponent } from './mycart/mycart.component';
 import { RegisterComponent } from './register/register.component';
@@ -10,7 +9,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginGuard } from './guards/login-guard.guard';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
   { path: 'allevents', component: AlleventsComponent },
   { path: 'mycart', component: MycartComponent , canActivate: [LoginGuard]},
   { path: 'register', component: RegisterComponent },

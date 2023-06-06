@@ -1,6 +1,13 @@
+<button (click)="sortAlphabetically()">Sort Alphabetically by name</button>
+<button (click)="sortReverse()">Sort Reverse by name</button>
+<button (click)="sortByNameAndPlace()">Sort Alphabetically by Event Place</button>
+<button (click)="sortReverseByNameAndPlace()">Sort Reverse by Event Place</button>
+<button (click)="sortByDateOldestFirst()">Sort by Date (Sooner)</button>
+<button (click)="sortByDateYoungestFirst()">Sort by Date (Later)</button>
+
 <link rel="stylesheet" src="../app.component.css">
 <div id="event-page">
-  <table class="event" *ngFor="let event of listOfEvents">
+  <table class="event" *ngFor="let event of filteredEvents">
     <tr>
       <td id="event-name">{{ event.name }}</td>
       <td id="event-date">{{ event.date }}</td>
@@ -9,3 +16,6 @@
     <tr><td id="event-details" colspan="2">{{ event.details }}</td></tr>
   </table>
 </div>
+
+
+
