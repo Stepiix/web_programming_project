@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth/auth-service.service';
 import { user } from '../models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +15,7 @@ export class LoginComponent {
   email: string = "";
   password: string = "";  
 
-  constructor(private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   login(): void{
     this.email = (document.getElementById("email") as HTMLInputElement).value
@@ -25,6 +26,11 @@ export class LoginComponent {
         alert('There\'s no account with these parameters')
       } else {
         alert(user.name + ', you\' re logged in!');
+        if (user && user.token) {
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.router.navigate(['/itemList']);
+        }
+  
       }
     })
   }

@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   register(username: string, e: string, pw: string, pn: string) {
-    return this.http.post<AuthResponse>(endpoint+"register", {name: username, email: e, password: pw, phonenumber: pn}, options);
+    return this.http.post<any>(endpoint+"register", {name: username, email: e, password: pw, phonenumber: pn}, options);
   }
 }
 
