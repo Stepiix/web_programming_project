@@ -16,20 +16,18 @@ export class ProfilePageComponent implements OnInit {
     password: ''
   };
 
-  constructor(private auth: AuthService){
-    
-  }
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
-    // this.getInfo();
+    this.getInfo();
   }
 
-  // getInfo() {
-  //   this.auth.getInfo().subscribe({
-  //     next: (data: user)=>{
-  //       this.userInfo = data;
-  //     },
-  //     error: (err: any)=>{ }
-  //   })
-  // }
+  getInfo(): void {
+    this.auth.getInfo().subscribe({
+      next: (data: user) => {
+        this.userInfo = data;
+      },
+      error: (err: any) => { }
+    });
+  }
 }

@@ -226,4 +226,44 @@ userController.delete = function (req, res) {
     })
 }
 
+userController.profile = function (req, res) {
+    // Assuming you have access to the authenticated user's ID
+    console.log("faaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    var token = req.headers['token'];
+    const userId = "";
+    console.log("faaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    jwt.verify(token, config.secret, function(err, decoded) {  
+        console.log("faaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");    
+        if (err) 
+          return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });    
+    
+        // if everything is good, save to request for use in other routes
+        userId = decoded.id;
+        console.log("faaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        Person.findById(userId, function (err, user) {
+
+            if (err) {
+              // Handle the error appropriately
+              return res.status(500).json({ error: 'Internal Server Error' });
+            }
+        
+            if (!user) {
+              // User not found
+              console.log("takze tady chyba");
+              return res.status(404).json({ error: 'User not found' });
+            }
+            console.log("sem se dostanu?");
+            // Return the user information
+            return res.status(200).json(user);
+          });
+
+        next();
+      });
+
+
+    console.log("nefunguje to");
+  console.log("kurva");
+  // Use your preferred method to retrieve the user information
+};
+
 module.exports = userController;

@@ -25,11 +25,17 @@ export class AuthService {
     return this.http.post<any>(endpoint+"register", {name: username, email: e, password: pw, phonenumber: pn}, options);
   }
 
+
+  getInfo(): Observable<user> {
+    // return this.http.get<user>(endpoint+"user-info-endpoint");
+    let currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    return this.http.get<user>(endpoint+"user-info-endpoint", {headers: new HttpHeaders({'token': currentUser})});
+  }
   // getInfo() : any{
   //   let local = localStorage.getItem('currentUser')
   //   if(local != null)
   //     return this.http.get<user>(endpoint + "get", { headers: new HttpHeaders({'x-acces-token': JSON.parse(local).token}) });
-  //   return {
+  //   return { 
   //     _id: '',
   //     name: '',
   //     email: '',

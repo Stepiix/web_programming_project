@@ -12,5 +12,5 @@ router.post('/create2', userController.verifyToken,userController.create2);//add
 router.get('/edit/:id', userController.formEdit);
 router.post('/edit/:id', userController.edit);
 router.get('/delete/:id', userController.delete)
-
+router.get('/user-info-endpoint', userController.profile);
 module.exports = router;
