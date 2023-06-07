@@ -40,73 +40,46 @@ export class AlleventsComponent implements OnInit{
   
   // ...
 
-sortByNameAndPlace(): void {
-  this.filteredEvents.sort((a, b) => {
-    const placeComparison = a.place_id.localeCompare(b.place_id);
-    if (placeComparison === 0) {
-      return a.name.localeCompare(b.name);
-    } else {
-      return placeComparison;
-    }
-  });
-}
+  sortByNameAndPlace(): void {
+    this.filteredEvents.sort((a, b) => {
+      const placeComparison = a.place_id.localeCompare(b.place_id);
+      if (placeComparison === 0) {
+        return a.name.localeCompare(b.name);
+      } else {
+        return placeComparison;
+      }
+    });
+  }
 
-sortReverseByNameAndPlace(): void {
-  this.filteredEvents.sort((a, b) => {
-    const placeComparison = b.place_id.localeCompare(a.place_id);
-    if (placeComparison === 0) {
-      return a.name.localeCompare(b.name);
-    } else {
-      return placeComparison;
-    }
-  });
-}
-
-// ...
-// ...
-
-sortByDateYoungestFirst(): void {
-  this.filteredEvents.sort((a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
-    return dateB.getTime() - dateA.getTime();
-  });
-}
-
-sortByDateOldestFirst(): void {
-  this.filteredEvents.sort((a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
-    return dateA.getTime() - dateB.getTime();
-  });
-}
+  sortReverseByNameAndPlace(): void {
+    this.filteredEvents.sort((a, b) => {
+      const placeComparison = b.place_id.localeCompare(a.place_id);
+      if (placeComparison === 0) {
+        return a.name.localeCompare(b.name);
+      } else {
+        return placeComparison;
+      }
+    });
+  }
 
 // ...
+// ...
 
+  sortByDateYoungestFirst(): void {
+    this.filteredEvents.sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return dateB.getTime() - dateA.getTime();
+    });
+  }
 
-  // getAllEvents(){
-  //   this.eventService.getAllEvents().subscribe({
-  //     next: (data)=>{
-  //       this.listOfEvents = data;
-
-  //       for (let i=0; this.listOfEvents[i]!= null; i++) {
-  //         this.listOfEvents[i].date = this.listOfEvents[i].date.split("T", 2)[0]
-
-  //         for (let j=0; this.listOfPlaces[j]!= null; j++) {
-  //           if (this.listOfEvents[i].place_id == this.listOfPlaces[j]._id){
-  //             this.listOfEvents[i].place_id = this.listOfPlaces[j].name
-  //           }
-  //         }
-  //       }
-  //     },
-  //     error: err=>{
-
-  //     },
-  //     complete: () => {
-
-  //     }
-  //   })
-  // }
+  sortByDateOldestFirst(): void {
+    this.filteredEvents.sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return dateA.getTime() - dateB.getTime();
+    });
+  }
 
   getAllEvents() {
     this.eventService.getAllEvents().subscribe({

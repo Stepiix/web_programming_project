@@ -28,9 +28,8 @@ export class LoginComponent {
         alert(user.name + ', you\' re logged in!');
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
-          this.router.navigate(['/itemList']);
+          this.router.navigate(['allevents']);
         }
-  
       }
     })
   }

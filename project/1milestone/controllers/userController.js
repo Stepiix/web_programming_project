@@ -32,26 +32,7 @@ userController.show = function (req, res) {
     })
 }
 
-// userController.check = function (req, res) {
-//     Person.findOne({ email: req.body.e, password: req.body.pw }).exec((err, dbuser) => {
-//         if (err) {
-//             console.log('Reading error');
-//             //res.redirect('/error')
-//             res.json({"message": "invalid credentials"});
-//         } else {
-//             // console.log(dbuser);
-
-//             var token = jwt.sign({ id: user._id }, config.secret, {
-//                 expiresIn: 86400 // expires in 24 hours
-//                 });
-        
-
-//             res.status(200).send({ auth: true, token: token });
-//             //res.send(dbuser)           
-//         }
-//     })
-// }
-
+// Login
 userController.check = function(req, res){
     Person.findOne({ email: req.body.e }, function (err, user) {
         if (err) return res.status(500).send('Error on the server.');
@@ -73,31 +54,7 @@ userController.check = function(req, res){
   });
 }
 
-
-// userController.register = function (req, res) {
-//     Person.findOne({ email: req.body.email }).exec((err, dbuser) => {
-//         if (err) {
-//             console.log('Reading error');
-//             res.redirect('/error')
-//         } else {
-//             if (dbuser != null) {
-//                 console.log('There is already an account with that mail!');
-//                 res.send(null)
-//             } else {
-//                 var user = new Person(req.body);
-//                 user.save((err) => {
-//                     if (err) {
-//                         console.log('Saving error');
-//                         res.redirect('/error')
-//                     } else {
-//                         res.send(user);
-//                     }
-//                 })
-//             }
-//         }
-//     })
-// }
-
+// Register
 userController.register = function(req, res){
     console.log("ahoj");
     var hashedPassword = bcrypt.hashSync(req.body.password, 8);
@@ -226,44 +183,25 @@ userController.delete = function (req, res) {
     })
 }
 
+// Get profile infos
 userController.profile = function (req, res) {
-    // Assuming you have access to the authenticated user's ID
-    console.log("faaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     var token = req.headers['token'];
     const userId = "";
-    console.log("faaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
     jwt.verify(token, config.secret, function(err, decoded) {  
-        console.log("faaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");    
-        if (err) 
-          return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });    
-    
-        // if everything is good, save to request for use in other routes
-        userId = decoded.id;
-        console.log("faaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        Person.findById(userId, function (err, user) {
-
-            if (err) {
-              // Handle the error appropriately
-              return res.status(500).json({ error: 'Internal Server Error' });
-            }
-        
-            if (!user) {
-              // User not found
-              console.log("takze tady chyba");
-              return res.status(404).json({ error: 'User not found' });
-            }
-            console.log("sem se dostanu?");
-            // Return the user information
-            return res.status(200).json(user);
-          });
-
-        next();
+        if (err) {
+            console.log(err)
+            res.status(500).json({ error: 'Validation Error' });
+        }
+        Person.findById(decoded.id, function (err, user) {
+            if (err)    // Handle the error appropriately
+              res.status(505).json({ error: 'Internal Server Error' });
+            if (user == null)  // User not found
+              res.status(404).json({ error: 'User not found' });
+            
+            res.status(200).json(user)
+        });
       });
-
-
-    console.log("nefunguje to");
-  console.log("kurva");
-  // Use your preferred method to retrieve the user information
 };
 
 module.exports = userController;

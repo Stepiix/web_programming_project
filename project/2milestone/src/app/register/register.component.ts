@@ -32,7 +32,11 @@ export class RegisterComponent implements OnInit {
         if(user == null) {
           alert('There\'s already an account with this mail')
         } else {
-          alert(user.name + ', you created an account!');
+          alert(this.name + ', you created an account!');
+          if (user && user.token) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            this.router.navigate(['allevents']);
+          }
         }
       })
     }

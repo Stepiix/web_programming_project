@@ -3,8 +3,11 @@
 <div id="profile-page">
     <table id="profile">
         <tr>
-            <td>icona</td>
-            <td id="name">{{ userInfo.name }}</td>
+            <td id="icon"><mat-icon>perm_identity</mat-icon></td>
+            <td>
+                <h3 id="name">{{ userInfo.name }}</h3>
+                <p id="points">Obtained points: {{ userInfo.points }}</p>
+            </td>
         </tr>
         <tr>
             <td class="infos-title">Email</td>
@@ -12,7 +15,8 @@
         </tr>
         <tr>
             <td class="infos-title">Phone Number</td>
-            <td class="infos">{{ userInfo.phonenumber }}</td>
+            <td class="infos" *ngIf="numSaved()">{{ userInfo.phonenumber }}</td>
+            <td class="infos" id="noNum" *ngIf="!numSaved()">You haven't saved any number</td>
         </tr>
         <tr>
             <td class="infos-title">Password</td>

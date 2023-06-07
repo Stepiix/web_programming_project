@@ -13,7 +13,8 @@ export class ProfilePageComponent implements OnInit {
     name: '',
     email: '',
     phonenumber: '',
-    password: ''
+    password: '',
+    points: 0
   };
 
   constructor(private auth: AuthService) { }
@@ -29,5 +30,9 @@ export class ProfilePageComponent implements OnInit {
       },
       error: (err: any) => { }
     });
+  }
+
+  numSaved(): boolean {
+    return this.userInfo.phonenumber != null;
   }
 }
