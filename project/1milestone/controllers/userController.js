@@ -63,7 +63,9 @@ userController.register = function(req, res){
         name : req.body.name || '',
         email : req.body.email,
         password : hashedPassword,
-        role: req.body.email || "USER"
+        role: req.body.email || "USER",
+        phonenumber:  req.body.phonenumber,
+        points: 0,
     }, 
     function (err, user) {
         console.log("kde ses");

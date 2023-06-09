@@ -1,8 +1,10 @@
+import { AuthService } from './../services/auth/auth-service.service';
 import { Component, OnInit } from '@angular/core';
 import { PlaceService } from '../services/event/place.service';
 import { EventServiceService } from '../services/event/event-service.service';
 import { place } from '../models/place';
 import { eventPlace } from "../models/event";
+import { CartService } from '../services/cart/cart.service';
 
 @Component({
   selector: 'app-allevents',
@@ -15,16 +17,32 @@ export class AlleventsComponent implements OnInit{
   filteredEvents: eventPlace[] = []; // New property for filtered events
   isSortedAlphabetically: boolean = false; // New property to track sorting state
   isFilteredEarlier: boolean = false;
+  cart: eventPlace[] = [];
 
   
 
-  constructor(private eventService: EventServiceService, private placeService: PlaceService){
+  constructor(private eventService: EventServiceService, private placeService: PlaceService, private authService: AuthService, private cartService: CartService){
     this.isSortedAlphabetically = false;
   }
   ngOnInit(): void {
     this.getAllPlaces();
     this.getAllEvents();
     this.filterEventsAlphabetically();
+  }
+
+  purchaseEvent(event: eventPlace): void {
+    this.authService.getInfo().subscribe(currentUser => {
+      if (currentUser) {
+        const userId = currentUser._id;
+        console.log('Adding event to cart:', event);
+        this.cartService.addToCart(userId, event); // Add the event to the cart using the CartService
+        console.log('Updated cart:', this.cartService.getCart(userId)); // Retrieve the updated cart
+      }
+    });
+  }
+
+  currentUserExists(): boolean {
+    return localStorage.getItem('currentUser') == null;
   }
 
   getAllPlaces(){

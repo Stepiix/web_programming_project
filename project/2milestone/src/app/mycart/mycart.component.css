@@ -1,0 +1,30 @@
+.my-cart-container {
+    margin: 20px;
+  }
+  
+  .my-cart-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 16px;
+  }
+  
+  .my-cart-empty {
+    color: #999;
+  }
+  
+  .my-cart-item {
+    margin-bottom: 24px;
+  }
+  
+  .my-cart-event-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .my-cart-event-date,
+  .my-cart-event-place,
+  .my-cart-event-details {
+    margin-bottom: 8px;
+    color: #666;
+  }
