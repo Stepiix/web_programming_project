@@ -34,6 +34,9 @@ export class AuthService {
   logout() {
     localStorage.removeItem('currentUser');
   }
+
+
+  
 }
 
 export interface AuthResponse{ }
