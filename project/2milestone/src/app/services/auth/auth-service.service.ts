@@ -26,7 +26,6 @@ export class AuthService {
   }
 
   getInfo(): Observable<user> {
-    // return this.http.get<user>(endpoint+"user-info-endpoint");
     let currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}').token;
     return this.http.get<user>(endpoint+"user-info-endpoint", {headers: new HttpHeaders({'token': currentUser})})
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { eventPlace } from '../models/event';
 import { CartService } from '../services/cart/cart.service';
 import { AuthService } from './../services/auth/auth-service.service';
+import { Sale } from '../models/sale';
 
 @Component({
   selector: 'app-mycart',
@@ -9,16 +9,14 @@ import { AuthService } from './../services/auth/auth-service.service';
   styleUrls: ['./mycart.component.css']
 })
 export class MycartComponent implements OnInit {
-  cart: eventPlace[] = [];
+  cart: Sale[] = [];
 
-  constructor(private cartService: CartService, private authService: AuthService) {}
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.authService.getInfo().subscribe(currentUser => {
-      if (currentUser) {
-        const userId = currentUser._id;
-        // this.cart = this.cartService.getCart(userId); // Retrieve the cart from the CartService
-      }
+    this.cartService.getCart().subscribe(sales => {
+      if (sales)
+        this.cart = sales;
     });
   }
 }

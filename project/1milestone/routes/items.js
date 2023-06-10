@@ -12,7 +12,6 @@ router.post('/create', itemController.create);
 router.get('/edit/:id', itemController.formEdit);
 router.post('/edit/:id', itemController.edit);
 router.get('/delete/:id', itemController.delete);
-router.post('/saveSale', itemController.saveSale);
 
 router.get('/:id_e/tickets', ticketController.showAll);
 router.get('/:id_e/tickets/create', ticketController.formCreate);

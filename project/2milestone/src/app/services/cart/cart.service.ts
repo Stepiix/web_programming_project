@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
-import { eventPlace } from '../../models/event';
+import { Sale } from 'src/app/models/sale';
 
 
-const endpoint = "http://localhost:3000/items/";
+const endpoint = "http://localhost:3000/sales/";
 const options = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -18,18 +18,11 @@ export class CartService {
   constructor(private http: HttpClient) { }
 
   saveSale(userId: String, eventId: String) {
-    return this.http.post<any>(endpoint+"saveSale", {userId: userId, eventId: eventId}, options);
+    this.http.post(endpoint+"saveSale", {customer_id: userId, event_id: eventId}, options);
   }
 
-
-  // addToCart(userId: string, event: eventPlace): void {
-  //   if (!this.carts[userId]) {
-  //     this.carts[userId] = [];
-  //   }
-  //   this.carts[userId].push(event);
-  // }
-
-  // getCart(userId: string): eventPlace[] {
-  //   return this.carts[userId] || [];
-  // }
+  getCart(): Observable<Sale[]> {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}').token;
+    return this.http.get<Sale[]>(endpoint+"cart", {headers: new HttpHeaders({'token': currentUser})});
+  }
 }

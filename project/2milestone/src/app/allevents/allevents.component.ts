@@ -30,13 +30,10 @@ export class AlleventsComponent implements OnInit{
   }
 
   purchaseEvent(event: eventPlace): void {
-     console.log(event._id);
+    alert(event._id);
     this.authService.getInfo().subscribe(currentUser => {
       if (currentUser) {
-        const userId = currentUser._id;
-        const eventId = event._id;
-        this.cartService.saveSale(userId, eventId);
-        // this.cartService.addToCart(userId, event); // Add the event to the cart using the CartService
+        this.cartService.saveSale(currentUser._id, event._id);
       }
   });
   }

@@ -11,7 +11,7 @@ var itemController = {};
 itemController.showAll = function (req, res) {
     Item.find({}).exec((err, dbitems) => {
         if (err) {
-            console.log('Erro a ler');
+            console.log('Reading error - Events');
             res.redirect('/error')
         } else {
             Place.find({}).exec((err, dbplaces) => {
@@ -29,18 +29,10 @@ itemController.showAll = function (req, res) {
 itemController.showAll2 = function (req, res) {
     Item.find({}).exec((err, dbitems) => {
         if (err) {
-            console.log('Erro a ler');
-            res.status(500).json({ error: err });
-        } else {
-            Place.find({}).exec((err, dbplaces) => {
-                if (err) {
-                    console.log('Reading error - Place');
-                    res.status(404).json({ error: 'Reading error - Place' });
-                } else {
-                    res.status(200).json(dbitems);
-                }
-            })
+            console.log('Reading error - Events');
+            res.status(500).json({ error: 'Reading error - Events' });
         }
+        res.status(200).json(dbitems);
     })
 }
 
@@ -48,7 +40,7 @@ itemController.showAll2 = function (req, res) {
 itemController.show = function (req, res) {
     Item.findOne({ _id: req.params.id }).exec((err, dbitem) => {
         if (err) {
-            console.log('Erro a ler');
+            console.log('Reading error - Event');
             res.redirect('/error')
         } else {
             Place.findOne({ _id: dbitem.place_id }).exec((err, dbplace) => {
@@ -164,10 +156,6 @@ itemController.delete = function (req, res) {
             })
         }
     })
-}
-
-itemController.saveSale = function (req, res) {
-    console.log("blabla");
 }
 
 module.exports = itemController;

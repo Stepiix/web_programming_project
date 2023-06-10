@@ -3,10 +3,8 @@
   <div *ngIf="cart.length === 0" class="my-cart-empty">
     Your cart is empty.
   </div>
-  <div *ngFor="let event of cart" class="my-cart-item">
-    <h3 class="my-cart-event-name">{{ event.name }}</h3>
-    <p class="my-cart-event-date">Date: {{ event.date }}</p>
-    <p class="my-cart-event-place">Place: {{ event.place_id }}</p>
-    <p class="my-cart-event-details">Details: {{ event.details }}</p>
+  <div *ngFor="let sale of cart" class="my-cart-item">
+    <h3 class="my-cart-event-name">{{ sale.customer_id }}</h3>
+    <p class="my-cart-event-date">Date: {{ sale.event_id }}</p>
   </div>
 </div>

@@ -3,6 +3,8 @@ var Sale = require('../models/sale');
 var Event = require('../models/item');
 var User = require('../models/person');
 var Ticket = require('../models/ticket');
+const jwt = require('jsonwebtoken');
+const config = require('../jwtsecret/config');
 
 var saleController = {};
 
@@ -32,75 +34,33 @@ saleController.showAll = function(req, res){
     })
 }
 
-// // mostra 1 item por id
-// saleController.show = function(req, res){
-//     Sale.findOne({_id:req.params.id}).exec((err, dbitem)=>{
-//         if (err){
-//             console.log('Erro a ler');
-//             res.redirect('/error')
-//         } else {
-//             res.render('items/itemViewDetails', {item: dbitem});
-//         }
-//     })
-// }
+// Create 1 sale as a response to frontend POST
+saleController.save = function(req,res){
+    var sale = new Sale(req.body);
+    sale.save((err)=>{
+        if (err){
+            console.log('Saving error');
+            res.status(500).json({ error: 'Saving Error' });
+        }
+    })
+}
 
-// // form para criar 1 item
-// saleController.formCreate = function(req,res){
-//     Place.find({}).exec((err, dbplaces)=>{
-//         if (err){
-//             console.log('Erro a ler');
-//             res.redirect('/error')
-//         } else {
-//             res.render('sales/createForm', {places: dbplaces});
-//         }
-//     })
-// }
+saleController.getCart = function(req, res){
+    var token = req.headers['token'];
 
-// // cria 1 item como resposta a um post de um form
-// saleController.create = function(req,res){
-//     var item = new Item(req.body);
-//     item.save((err)=>{
-//         if (err){
-//             console.log('Erro a gravar');
-//             res.redirect('/error')
-//         } else {
-//             res.redirect('/items');
-//         }
-//     })
-// }
+    jwt.verify(token, config.secret, function(err, decoded) {
+        if (err)
+            res.status(500).json({ error: 'Validation Error' });
 
-// // mostra 1 item para edicao
-// saleController.formEdit = function(req, res){
-//     Sale.findOne({_id:req.params.id}).exec((err, dbitem)=>{
-//         if (err){
-//             console.log('Erro a ler');
-//             res.redirect('/error')
-//         } else {
-//             Place.find({}).exec((err, dbplaces)=>{
-//                 if (err){
-//                     console.log('Erro a ler');
-//                     res.redirect('/error')
-//                 } else {
-//                     res.render('items/itemEditDetails', {item: dbitem, places: dbplaces});
-//                 }
-//             })
-//         }
-//     })
-// }
+        Sale.find({ customer_id: decoded.id }).exec((err, dbsales) => {
+            if(err)
+                res.status(404).json({ error: 'Reading error - Sales' });
+            res.status(200).json(dbsales);
+        })
+    })
+}
 
-// // edita 1 item como resposta a um post de um form editar
-// saleController.edit = function(req,res){
-//     Sale.findByIdAndUpdate(req.body._id, req.body, (err, editedItem)=>{
-//         if (err){
-//             console.log('Erro a gravar');
-//             res.redirect('/error')
-//         } else {
-//             res.redirect('/items/show/'+req.body._id);
-//         }
-//     } )
-// }
-
-// elimina 1 item
+// Delete 1 sale
 saleController.delete = function(req, res){
     Ticket.remove({sale_id:req.params.id}).exec((err)=>{
         if (err){
