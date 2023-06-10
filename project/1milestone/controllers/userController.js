@@ -61,7 +61,7 @@ userController.register = function(req, res){
     Person.findOne({ email: req.body.email }, function (err, user) {
         if (err)
             return res.status(500).json({ error: 'Error on the server' });
-        if (!user)
+        if (user)
             return res.status(404).json({ error: 'No user found' });
         
         var hashedPassword = bcrypt.hashSync(req.body.password, 8);
