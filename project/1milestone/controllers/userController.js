@@ -35,8 +35,10 @@ userController.show = function (req, res) {
 // Login
 userController.check = function(req, res){
     Person.findOne({ email: req.body.e }, function (err, user) {
-        if (err) return res.status(500).send('Error on the server.');
-        if (!user) return res.status(404).send('No user found.');
+        if (err)
+            return res.status(500).send('Error on the server.');
+        if (!user)
+            return res.status(404).send('No user found.');
         
         // check if the password is valid
         var passwordIsValid = bcrypt.compareSync(req.body.pw, user.password);
@@ -56,28 +58,31 @@ userController.check = function(req, res){
 
 // Register
 userController.register = function(req, res){
-    console.log("ahoj");
-    var hashedPassword = bcrypt.hashSync(req.body.password, 8);
-    console.log("cau");
-    Person.create({
-        name : req.body.name || '',
-        email : req.body.email,
-        password : hashedPassword,
-        role: req.body.email || "USER",
-        phonenumber:  req.body.phonenumber,
-        points: 0,
-    }, 
-    function (err, user) {
-        console.log("kde ses");
-        if (err) return res.status(500).json(err);
-    
-        // if user is registered without errors
-        // create a token
-        var token = jwt.sign({ id: user._id }, config.secret, {
-        expiresIn: 86400 // expires in 24 hours
-        });
+    Person.findOne({ email: req.body.email }, function (err, user) {
+        if (err)
+            res.status(500).send('Error on the server.');
+        if (user != null)
+            res.status(404).send('Email used by another user!');
+        else {
+            var hashedPassword = bcrypt.hashSync(req.body.password, 8);
+            Person.create({
+                name : req.body.name || '',
+                email : req.body.email,
+                password : hashedPassword,
+                role: req.body.email || "USER"
+            }, 
+            function (err, user) {
+                if (err) return res.status(500).json(err);
+            
+                // if user is registered without errors
+                // create a token
+                var token = jwt.sign({ id: user._id }, config.secret, {
+                expiresIn: 86400 // expires in 24 hours
+                });
 
-        res.status(200).send({ auth: true, token: token });
+                res.status(200).send({ auth: true, token: token, name: user.name });
+            });
+        }
     });
 }
 
