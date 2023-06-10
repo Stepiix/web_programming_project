@@ -17,7 +17,6 @@ export class AlleventsComponent implements OnInit{
   filteredEvents: eventPlace[] = []; // New property for filtered events
   isSortedAlphabetically: boolean = false; // New property to track sorting state
   isFilteredEarlier: boolean = false;
-  cart: eventPlace[] = [];
 
   
 
@@ -31,14 +30,15 @@ export class AlleventsComponent implements OnInit{
   }
 
   purchaseEvent(event: eventPlace): void {
+     console.log(event._id);
     this.authService.getInfo().subscribe(currentUser => {
       if (currentUser) {
         const userId = currentUser._id;
-        console.log('Adding event to cart:', event);
-        this.cartService.addToCart(userId, event); // Add the event to the cart using the CartService
-        console.log('Updated cart:', this.cartService.getCart(userId)); // Retrieve the updated cart
+        const eventId = event._id;
+        this.cartService.saveSale(userId, eventId);
+        // this.cartService.addToCart(userId, event); // Add the event to the cart using the CartService
       }
-    });
+  });
   }
 
   currentUserExists(): boolean {

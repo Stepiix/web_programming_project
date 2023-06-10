@@ -166,4 +166,8 @@ itemController.delete = function (req, res) {
     })
 }
 
+itemController.saveSale = function (req, res) {
+    console.log("blabla");
+}
+
 module.exports = itemController;

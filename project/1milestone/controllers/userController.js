@@ -190,7 +190,7 @@ userController.profile = function (req, res) {
     var token = req.headers['token'];
     const userId = "";
 
-    jwt.verify(token, config.secret, function(err, decoded) {  
+    jwt.verify(token, config.secret, function(err, decoded) {  //with token finds user
         if (err) {
             console.log(err)
             res.status(500).json({ error: 'Validation Error' });

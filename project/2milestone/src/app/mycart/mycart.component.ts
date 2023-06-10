@@ -17,7 +17,7 @@ export class MycartComponent implements OnInit {
     this.authService.getInfo().subscribe(currentUser => {
       if (currentUser) {
         const userId = currentUser._id;
-        this.cart = this.cartService.getCart(userId); // Retrieve the cart from the CartService
+        // this.cart = this.cartService.getCart(userId); // Retrieve the cart from the CartService
       }
     });
   }

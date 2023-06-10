@@ -1,20 +1,35 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, catchError } from 'rxjs';
 import { eventPlace } from '../../models/event';
+
+
+const endpoint = "http://localhost:3000/items/";
+const options = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private carts: { [userId: string]: eventPlace[] } = {};
+  
+  constructor(private http: HttpClient) { }
 
-  addToCart(userId: string, event: eventPlace): void {
-    if (!this.carts[userId]) {
-      this.carts[userId] = [];
-    }
-    this.carts[userId].push(event);
+  saveSale(userId: String, eventId: String) {
+    return this.http.post<any>(endpoint+"saveSale", {userId: userId, eventId: eventId}, options);
   }
 
-  getCart(userId: string): eventPlace[] {
-    return this.carts[userId] || [];
-  }
+
+  // addToCart(userId: string, event: eventPlace): void {
+  //   if (!this.carts[userId]) {
+  //     this.carts[userId] = [];
+  //   }
+  //   this.carts[userId].push(event);
+  // }
+
+  // getCart(userId: string): eventPlace[] {
+  //   return this.carts[userId] || [];
+  // }
 }

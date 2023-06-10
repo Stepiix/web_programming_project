@@ -1,4 +1,5 @@
 export class eventPlace{
+    _id: string = "";
     name: string = "";
     date: string = "";
     place_id: string = "";

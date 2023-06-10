@@ -2,6 +2,7 @@
 var mongoose = require('mongoose');
 
 var ItemSchema = new mongoose.Schema({
+    _id: String,
     name: String,
     date: Date,
     place_id: String,
