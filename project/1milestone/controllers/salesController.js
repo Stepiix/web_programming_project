@@ -36,13 +36,38 @@ saleController.showAll = function(req, res){
 
 // Create 1 sale as a response to frontend POST
 saleController.save = function(req,res){
-    var sale = new Sale(req.body);
-    sale.save((err)=>{
-        if (err){
-            console.log('Saving error');
-            res.status(500).json({ error: 'Saving Error' });
-        }
-    })
+    console.log("salecontr save")
+    var token = req.headers['token'];
+    var event_id = req.headers['event_id'];
+
+    jwt.verify(token, config.secret, function(err, decoded) {  //with token finds user
+        if (err)
+            res.status(500).json({ error: 'Validation Error' });
+            
+        var sale = new Sale();
+        sale.customer_id = decoded.id;
+        sale.event_id = event_id;
+        sale.save((err)=>{
+            if (err){
+                console.log('Saving error');
+                res.status(500).json({ error: 'Saving Error' });
+            }
+            else {
+                console.log("qui")
+            }
+        })
+
+        Person.findById(decoded.id, function (err, user) {
+            if (err)    // Handle the error appropriately
+              res.status(505).json({ error: 'Internal Server Error' });
+            if (user == null)  // User not found
+              res.status(404).json({ error: 'User not found' });
+            
+            res.status(200).json(user)
+        });
+    });
+
+    
 }
 
 saleController.getCart = function(req, res){
@@ -55,6 +80,7 @@ saleController.getCart = function(req, res){
         Sale.find({ customer_id: decoded.id }).exec((err, dbsales) => {
             if(err)
                 res.status(404).json({ error: 'Reading error - Sales' });
+            
             res.status(200).json(dbsales);
         })
     })

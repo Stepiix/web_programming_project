@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
 import { Sale } from 'src/app/models/sale';
+import { user } from 'src/app/models/user';
 
 
 const endpoint = "http://localhost:3000/sales/";
@@ -17,8 +18,14 @@ export class CartService {
   
   constructor(private http: HttpClient) { }
 
-  saveSale(userId: String, eventId: String) {
-    this.http.post(endpoint+"saveSale", {customer_id: userId, event_id: eventId}, options);
+  saveSale(eventId: string) {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}').token;
+    alert(eventId+ "   " + currentUser)
+    this.http.post(endpoint+"save",null, {headers: new HttpHeaders({'token': currentUser, 'event_id': eventId})}).subscribe(
+      () => { },
+      (error) => { }
+    );
+    alert("dopo")
   }
 
   getCart(): Observable<Sale[]> {

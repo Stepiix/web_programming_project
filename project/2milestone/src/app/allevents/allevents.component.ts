@@ -30,12 +30,7 @@ export class AlleventsComponent implements OnInit{
   }
 
   purchaseEvent(event: eventPlace): void {
-    alert(event._id);
-    this.authService.getInfo().subscribe(currentUser => {
-      if (currentUser) {
-        this.cartService.saveSale(currentUser._id, event._id);
-      }
-  });
+    this.cartService.saveSale(event._id);
   }
 
   currentUserExists(): boolean {
