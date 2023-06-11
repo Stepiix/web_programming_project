@@ -23,6 +23,9 @@ export class EventServiceService {
     let currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}').token;
     return this.http.get<eventPlace[]>(endpoint + "showSale", {headers: new HttpHeaders({'token': currentUser})});
   }
+  getEventPlaces(eventIds: string[]): Observable<eventPlace[]> {
+    return this.http.post<eventPlace[]>(endpoint + "getEventPlaces", { eventIds }, options);
+  }
 
   // return this.http.post<event[]>(endpoint, {info to send to the backend in json}, options);
 }

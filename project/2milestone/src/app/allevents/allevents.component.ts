@@ -6,6 +6,7 @@ import { place } from '../models/place';
 import { eventPlace } from "../models/event";
 import { CartService } from '../services/cart/cart.service';
 import { Router } from '@angular/router';
+import { user } from '../models/user';
 
 @Component({
   selector: 'app-allevents',
@@ -13,21 +14,53 @@ import { Router } from '@angular/router';
   styleUrls: ['./allevents.component.css']
 })
 export class AlleventsComponent implements OnInit{
+  userInfo: user = {
+    _id: '',
+    name: '',
+    email: '',
+    phonenumber: '',
+    password: '',
+    points: 0,
+    role: 'USER'
+  };
   listOfPlaces: place[] = [];
   listOfEvents: eventPlace[] = [];
   filteredEvents: eventPlace[] = []; // New property for filtered events
   isSortedAlphabetically: boolean = false; // New property to track sorting state
   isFilteredEarlier: boolean = false;
+  prize: number=10;
+
 
   
 
-  constructor(private eventService: EventServiceService, private placeService: PlaceService, private cartService: CartService, private router: Router){
-    this.isSortedAlphabetically = false;
+  constructor(private eventService: EventServiceService, private placeService: PlaceService, private cartService: CartService, private router: Router, private auth: AuthService){
+    this.isSortedAlphabetically = false; 
   }
   ngOnInit(): void {
     this.getAllPlaces();
     this.getAllEvents();
     this.filterEventsAlphabetically();
+    this.getInfo();
+    this.points();
+  }
+
+  points(): void{
+    if(this.prize <= 1){
+      this.prize = 1;
+    }
+    
+  }
+  getInfo(): void {
+    this.auth.getInfo().subscribe({
+      next: (data: user) => {
+        this.userInfo = data;
+        this.prize = this.prize - data.points;
+        if(this.prize < 1){
+          this.prize = 1;
+        }
+      },
+      error: (err: any) => { }
+    });
   }
 
   purchaseEvent(event: eventPlace): void {

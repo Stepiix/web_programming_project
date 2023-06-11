@@ -9,4 +9,8 @@
     <h3 class="my-cart-event-name">{{ sale.event_id }}</h3>
     <p class="my-cart-event-date">{{ sale.event_id }}</p>
   </div>
+  <div *ngFor="let sale of listOfEvents" class="my-cart-item">
+    <h3 class="my-cart-event-name">{{ sale.name }}</h3>
+    <p class="my-cart-event-date">{{ sale.date }}</p>
+  </div>>
 </div>
