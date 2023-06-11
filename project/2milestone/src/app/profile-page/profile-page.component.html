@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
-<div id="profile-page">
+<div id="page">
     <table id="profile">
         <tr>
             <td id="icon"><mat-icon>perm_identity</mat-icon></td>
@@ -21,6 +21,11 @@
         <tr>
             <td class="infos-title">Password</td>
             <td class="infos">********</td>
+        </tr>
+        <tr>
+            <td colspan="2" *ngIf="isAdmin()">
+                <button id="admin" (click)="goToAdminWebsite()">Go to admin website</button>
+            </td>
         </tr>
     </table>
 </div>

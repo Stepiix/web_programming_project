@@ -35,7 +35,6 @@
         </div>
       </nav>
     </header>
-    <% console.log(user) %>
     <section>
       <div class="container">
         <h1>User Detail</h1>
@@ -57,9 +56,14 @@
               <td><%= user.phonenumber %></td>
             </tr>
             <tr>
-              <td>email</td>
+              <td>Email</td>
               <td>:</td>
               <td><%= user.email %></td>
+            </tr>
+            <tr>
+              <td>Role</td>
+              <td>:</td>
+              <td><%= user.role %></td>
             </tr>
           </tbody>
         </table>

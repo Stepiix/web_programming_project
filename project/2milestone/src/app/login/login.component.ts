@@ -22,15 +22,20 @@ export class LoginComponent {
     this.password = (document.getElementById("password") as HTMLInputElement).value
 
     this.authService.login(this.email, this.password).subscribe((user : any)=>{
-      if(user == null) {
-        alert('There\'s no account with these parameters')
-      } else {
-        alert(user.name + ', you\' re logged in!');
-        if (user && user.token) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.router.navigate(['allevents']);
-        }
+      if (user && user.token) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.authService.isAdmin(this.email).subscribe((isAdmin : any)=>{
+            if (isAdmin == null) 
+              alert('There\'s no admin response')
+            localStorage.setItem('isAdmin', JSON.stringify(isAdmin.admin));
+            this.router.navigate(['allevents']);
+        })
       }
+    }, (error: any) => {
+      if (error.status === 404)
+        alert('User not found');
+      else  // Other error cases
+        alert('An error occurred during login.');
     })
   }
 
@@ -49,4 +54,9 @@ export class LoginComponent {
     } else { alert("Email is required!"); }   
   }
 
+  triggerLogin(): void {
+    const loginButton = document.querySelector('button');
+    if (loginButton)
+      loginButton.click();
+  }
 }

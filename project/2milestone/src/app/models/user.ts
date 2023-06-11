@@ -4,5 +4,6 @@ export class user{
     email: string = "";
     phonenumber: string = "";
     password: string = "";
+    role: string = "ADMIN" || "USER";
     points: number = 0;
 }

@@ -18,11 +18,17 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(email: string, password:string): Observable<AuthResponse>{
-    return this.http.post<AuthResponse>(endpoint+"login", {e: email, pw: password}, options);
+    return this.http.post<AuthResponse>(endpoint+"login", {e: email, pw: password}, options)
+    .pipe(catchError((error) => {
+      throw error;
+    }));
   }
 
   register(username: string, e: string, pw: string, pn: string) {
-    return this.http.post<any>(endpoint+"register", {name: username, email: e, password: pw, phonenumber: pn}, options);
+    return this.http.post<any>(endpoint+"register", {name: username, email: e, password: pw, phonenumber: pn}, options)
+      .pipe(catchError((error) => {
+        throw error;
+      }));
   }
 
   getInfo(): Observable<user> {
@@ -34,6 +40,9 @@ export class AuthService {
     localStorage.removeItem('currentUser');
   }
   
+  isAdmin(email: string): Observable<AuthResponse> {
+    return this.http.get<AuthResponse>(endpoint+"is-admin", {headers: new HttpHeaders({'mail': email})});
+  }
 }
 
 export interface AuthResponse{ }

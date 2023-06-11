@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth/auth-service.service';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   ePattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
   pwPattern =/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
   nPattern = /(\+[0-9]+)|[0-9]+/;
@@ -20,29 +21,18 @@ export class RegisterComponent implements OnInit {
 
   constructor(private auth: AuthService, private router: Router) { }
 
-  ngOnInit() {
-
-  }
-
   registerUser(): void{
-    if(this.password != this.cpassword){
-      alert("Passwords do not match")
-    } else {
-      alert("ciao")
-      this.auth.register(this.name, this.email, this.password, this.number).subscribe((user : any)=>{
-        alert(typeof user)
-        if (typeof user == "string")
-          alert(user)
-        if(user == null) {
-          alert('There\'s already an account with this mail')
-        } else {
-          if (user && user.token) {
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            this.router.navigate(['allevents']);
-          }
-        }
-      })
-    }
+    this.auth.register(this.name, this.email, this.password, this.number).subscribe((user : any)=>{
+      if (user && user.token) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.router.navigate(['allevents']);
+      }
+    }, (error: any) => {
+      if (error.status === 404)
+        alert('There\'s already an account with this mail');
+      else  // Other error cases
+        alert('An error occurred during registration.');
+    })
   }
 
   validate() {
@@ -68,5 +58,11 @@ export class RegisterComponent implements OnInit {
         } else { alert("Password is required and you have to confirm it in the second input!"); }
       } else { alert("Email is required!"); }
     } else { alert("Name is required!"); }    
+  }
+
+  triggerLogin(): void {
+    const loginButton = document.querySelector('button');
+    if (loginButton)
+      loginButton.click();
   }
 }

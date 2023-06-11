@@ -62,14 +62,15 @@ userController.register = function(req, res){
         if (err)
             return res.status(500).json({ error: 'Error on the server' });
         if (user)
-            return res.status(404).json({ error: 'No user found' });
+            return res.status(404).json({ error: 'One user found' });
         
         var hashedPassword = bcrypt.hashSync(req.body.password, 8);
         Person.create({
             name : req.body.name || '',
             email : req.body.email,
             password : hashedPassword,
-            role: req.body.email || "USER"
+            role: req.body.email || "USER",
+            points: 0
         }, 
         function (err, user) {
             if (err) return res.status(500).json(err);
@@ -101,26 +102,24 @@ userController.verifyToken = function(req, res, next) {
       req.userId = decoded.id;
       next();
     });
-  
 }
 
-userController.verifyTokenAdmin = function(req, res, next) {
+userController.verifyAdmin = function(req, res, next) {
+    var email = req.headers['mail'];
+    if (!email) 
+        return res.status(403).send({ auth: false, message: 'No email provided.' });
 
-    // check header or url parameters or post parameters for token
-    var token = req.headers['x-access-token'];
-    if (!token) 
-      return res.status(403).send({ auth: false, message: 'No token provided.' });
-  
-    // verifies secret and checks exp
-    jwt.verify(token, config.secret, function(err, decoded) {      
-      if (err || decoded.role !== 'ADMIN') 
-        return res.status(500).send({ auth: false, message: 'Failed to authenticate token or not Admin' });    
-      // if everything is good, save to request for use in other routes
-      req.userId = decoded.id;
-      next();
-    });
-  
-  }
+    Person.findOne({ email: email }).exec((err, user) => {
+        if (err)
+            return res.status(500).json({ error: 'Error on the server' });
+        if (!user)
+            return res.status(404).json({ error: 'No user found' });
+        if (user.role == 'ADMIN')
+            res.status(200).json({ admin: true })
+        else
+            res.status(200).json({ admin: false })
+    })
+}
 
 
 // Form to create 1 user
@@ -143,6 +142,7 @@ userController.create = function (req, res) {
 
 userController.create2 = function (req, res) {
     var user = new Person(req.body);
+    user.points = 0
     user.save((err) => {
         if (err) {
             console.log('Saving error');

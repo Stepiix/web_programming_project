@@ -20,12 +20,11 @@ export class CartService {
 
   saveSale(eventId: string) {
     let currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}').token;
-    alert(eventId+ "   " + currentUser)
     this.http.post(endpoint+"save",null, {headers: new HttpHeaders({'token': currentUser, 'event_id': eventId})}).subscribe(
       () => { },
       (error) => { }
     );
-    alert("dopo")
+    alert("Event purchased!")
   }
 
   getCart(): Observable<Sale[]> {

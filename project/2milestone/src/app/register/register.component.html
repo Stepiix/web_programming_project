@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
-<body>
+<div id="page">
     <div id="sign-up">
         <h1 class="register-title">Register here</h1>
-        <div id="register-form">
+        <div id="register-form" (keyup.enter)="triggerLogin()">
             <h3 class="register-title">Name*</h3>
             <input type="text" class="register-emt" autocomplete="off" id="username" required/>
             <h3 class="register-title">Email*</h3>
@@ -20,4 +20,4 @@
         
         <a href="/login">I already have an account!</a>
     </div>
-</body>
+</div>

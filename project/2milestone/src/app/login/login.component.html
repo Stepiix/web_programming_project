@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
-<body>
+<div id="page">
     <div id="sign-in">
         <h1 class="login-title">Welcome Back!</h1>
-        <div id="login-form">
+        <div id="login-form" (keyup.enter)="triggerLogin()">
             <h3 class="login-title">Email</h3>
             <input type="text" id="email" class="login-emt" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required/>
             <h3 class="login-title">Password</h3>
@@ -13,4 +13,4 @@
         
         <a href="/register">I don't have any account!</a>
     </div>
-</body>
+</div>

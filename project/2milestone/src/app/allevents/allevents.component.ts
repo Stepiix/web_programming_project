@@ -5,6 +5,7 @@ import { EventServiceService } from '../services/event/event-service.service';
 import { place } from '../models/place';
 import { eventPlace } from "../models/event";
 import { CartService } from '../services/cart/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-allevents',
@@ -20,7 +21,7 @@ export class AlleventsComponent implements OnInit{
 
   
 
-  constructor(private eventService: EventServiceService, private placeService: PlaceService, private authService: AuthService, private cartService: CartService){
+  constructor(private eventService: EventServiceService, private placeService: PlaceService, private cartService: CartService, private router: Router){
     this.isSortedAlphabetically = false;
   }
   ngOnInit(): void {
@@ -31,6 +32,7 @@ export class AlleventsComponent implements OnInit{
 
   purchaseEvent(event: eventPlace): void {
     this.cartService.saveSale(event._id);
+    this.router.navigate(['mycart']);
   }
 
   currentUserExists(): boolean {

@@ -36,7 +36,6 @@ saleController.showAll = function(req, res){
 
 // Create 1 sale as a response to frontend POST
 saleController.save = function(req,res){
-    console.log("salecontr save")
     var token = req.headers['token'];
     var event_id = req.headers['event_id'];
 
@@ -53,18 +52,19 @@ saleController.save = function(req,res){
                 res.status(500).json({ error: 'Saving Error' });
             }
             else {
-                console.log("qui")
+                User.findById(decoded.id, function (err, user) {
+                    if (err)    // Handle the error appropriately
+                      res.status(505).json({ error: 'Internal Server Error' });
+                    if (user == null)  // User not found
+                      res.status(404).json({ error: 'User not found' });
+                    
+                    user.points = user.points+1
+                    console.log(user.points)
+
+                    res.status(200).json(user)
+                });
             }
         })
-
-        Person.findById(decoded.id, function (err, user) {
-            if (err)    // Handle the error appropriately
-              res.status(505).json({ error: 'Internal Server Error' });
-            if (user == null)  // User not found
-              res.status(404).json({ error: 'User not found' });
-            
-            res.status(200).json(user)
-        });
     });
 
     

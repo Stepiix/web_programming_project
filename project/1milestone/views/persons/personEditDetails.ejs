@@ -59,6 +59,21 @@
                 <td><input type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value="<%= user.email%>" /></td>
               </tr>
               <tr>
+                <td>Role</td>
+                <td>:</td>
+                <td>
+                  <select name="role">
+                    <% if (user.role == "USER") { %>
+                      <option value="USER" selected>User</option>
+                      <option value="ADMIN">Admin</option>
+                    <% } else { %>
+                      <option value="USER">User</option>
+                      <option value="ADMIN" selected>Admin</option>
+                    <% } %>
+                  </select>
+                </td>
+              </tr>
+              <tr>
                 <td colspan="2"><button type="submit">Edit</button></td>
               </tr>
             </tbody>

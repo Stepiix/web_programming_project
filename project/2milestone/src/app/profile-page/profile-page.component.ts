@@ -14,7 +14,8 @@ export class ProfilePageComponent implements OnInit {
     email: '',
     phonenumber: '',
     password: '',
-    points: 0
+    points: 0,
+    role: 'USER'
   };
 
   constructor(private auth: AuthService) { }
@@ -34,5 +35,15 @@ export class ProfilePageComponent implements OnInit {
 
   numSaved(): boolean {
     return this.userInfo.phonenumber != null;
+  }
+
+  isAdmin(): boolean {
+    if (JSON.parse(localStorage.getItem('isAdmin') || '{}'))
+      return true;
+    return false;
+  }
+
+  goToAdminWebsite(): void {
+    window.location.href = 'http://localhost:3000';
   }
 }
