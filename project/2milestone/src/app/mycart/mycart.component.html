@@ -1,16 +1,18 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
-<div class="my-cart-container">
-  <h2 class="my-cart-title">My Cart</h2>
-  <div *ngIf="cart.length == 0" class="my-cart-empty">
-    Your cart is empty.
+<div id="page">
+  <div id="my-cart-container">
+    <h2 class="my-cart-title">My Cart</h2>
+    <div *ngIf="cart.length == 0" class="my-cart-empty">
+      Your cart is empty.
+    </div>
+    <div *ngFor="let sale of cart" class="my-cart-item">
+      <h3 class="my-cart-event-name">{{ sale.event_id }}</h3>
+      <p class="my-cart-event-date">{{ sale.event_id }}</p>
+    </div>
+    <div *ngFor="let sale of listOfEvents" class="my-cart-item">
+      <h3 class="my-cart-event-name">{{ sale.name }}</h3>
+      <p class="my-cart-event-date">{{ sale.date }}</p>
+    </div>
   </div>
-  <div *ngFor="let sale of cart" class="my-cart-item">
-    <h3 class="my-cart-event-name">{{ sale.event_id }}</h3>
-    <p class="my-cart-event-date">{{ sale.event_id }}</p>
-  </div>
-  <div *ngFor="let sale of listOfEvents" class="my-cart-item">
-    <h3 class="my-cart-event-name">{{ sale.name }}</h3>
-    <p class="my-cart-event-date">{{ sale.date }}</p>
-  </div>>
 </div>

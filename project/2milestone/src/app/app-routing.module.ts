@@ -7,8 +7,10 @@ import { MycartComponent } from './mycart/mycart.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginGuard } from './guards/login-guard.guard';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent }, // home page route
   { path: 'allevents', component: AlleventsComponent },
   { path: 'mycart', component: MycartComponent , canActivate: [LoginGuard]},
   { path: 'register', component: RegisterComponent },
