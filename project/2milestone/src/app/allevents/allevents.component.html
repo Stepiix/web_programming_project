@@ -15,7 +15,6 @@
       <td id="event-date">{{ event.date }}</td>
     </tr>
     <tr><td id="event-place" colspan="2">{{ event.place_id}}</td></tr>
-    <tr><td id="event-place" colspan="2">{{ event._id}}</td></tr>
     <tr><td id="event-details" colspan="2">{{ event.details }}</td></tr>
     <tr><td colspan="2"><button id="purch-button" *ngIf="!currentUserExists()" (click)="purchaseEvent(event)">Purchase {{ prize }} euro </button></td></tr>
   </table>
