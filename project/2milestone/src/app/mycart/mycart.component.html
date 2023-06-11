@@ -7,12 +7,8 @@
       Your cart is empty.
     </div>
     <div *ngFor="let sale of cart" class="my-cart-item">
-      <h3 class="my-cart-event-name">{{ sale.event_id }}</h3>
-      <p class="my-cart-event-date">{{ sale.event_id }}</p>
-    </div>
-    <div *ngFor="let sale of listOfEvents" class="my-cart-item">
-      <h3 class="my-cart-event-name">{{ sale.name }}</h3>
-      <p class="my-cart-event-date">{{ sale.date }}</p>
+      <h3 class="my-cart-event-name">Event ID: {{ sale.event_id }}</h3>
+      <p class="my-cart-event-date">Customer ID: {{ sale.customer_id }}</p>
     </div>
   </div>
 </div>
