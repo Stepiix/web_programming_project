@@ -38,21 +38,21 @@
     <section>
       <div class="container">
         <h1>Place Detail</h1>
-        <form action="/places/edit/<%=item._id%>" method="post">
+        <form action="/places/edit/<%=place._id%>" method="post">
           <table>
             <tbody>
             <tr>
                 <td>Id</td>
                 <!-- Como o id não pode ser alterado usamos o input hidden para o enviar como campo do formulário. -->
-                <td><input type="hidden" name="_id" id="_id" value="<%= item._id %>"><%= item._id %></td>
+                <td><input type="hidden" name="_id" id="_id" value="<%= place._id %>"><%= place._id %></td>
                 </tr>
             <tr>
                 <td>Name</td>
-                <td><input type="text" name="name" id="name" value="<%= item.name %>" required></td>
+                <td><input type="text" name="name" id="name" value="<%= place.name %>" required></td>
               </tr>
               <tr>
                 <td>Address</td>
-                <td><input type="text" name="address" id="address" value="<%= item.address %>" required></td>
+                <td><input type="text" name="address" id="address" value="<%= place.address %>" required></td>
               </tr>
               <tr>
                 <td colspan="2"><button type="submit">Edit</button></td>
