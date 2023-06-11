@@ -158,4 +158,35 @@ itemController.delete = function (req, res) {
     })
 }
 
+itemController.getEventPlaces = function (req, res) {
+    var eventIds = req.body.eventIds;
+
+    Item.find({ _id: { $in: eventIds } }).exec((err, dbitems) => {
+        if (err) {
+            console.log('Reading error - Events');
+            res.status(500).json({ error: 'Reading error - Events' });
+        } else {
+            Place.find({ _id: { $in: dbitems.map(item => item.place_id) } }).exec((err, dbplaces) => {
+                if (err) {
+                    console.log('Reading error - Place');
+                    res.status(500).json({ error: 'Reading error - Place' });
+                } else {
+                    var eventPlaces = dbitems.map((item, index) => {
+                        return {
+                            _id: item._id,
+                            name: item.name,
+                            date: item.date,
+                            place_id: item.place_id,
+                            details: item.details,
+                            place: dbplaces[index]
+                        };
+                    });
+
+                    res.status(200).json(eventPlaces);
+                }
+            });
+        }
+    });
+};
+
 module.exports = itemController;

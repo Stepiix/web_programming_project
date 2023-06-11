@@ -52,17 +52,14 @@ saleController.save = function(req,res){
                 res.status(500).json({ error: 'Saving Error' });
             }
             else {
-                User.findById(decoded.id, function (err, user) {
-                    if (err)    // Handle the error appropriately
-                      res.status(505).json({ error: 'Internal Server Error' });
-                    if (user == null)  // User not found
-                      res.status(404).json({ error: 'User not found' });
-                    
-                    user.points = user.points+1
-                    console.log(user.points)
+                User.findOneAndUpdate({ _id: decoded.id }, { $inc: { points: 1 } }, { new: true }, function(err, updUser) {
+                if (err)
+                    res.status(500).json({ error: 'Error updating user' });
+                if (!updUser)
+                    res.status(404).json({ error: 'User not found' });
 
-                    res.status(200).json(user)
-                });
+                res.status(200).json(updUser);
+            });
             }
         })
     });

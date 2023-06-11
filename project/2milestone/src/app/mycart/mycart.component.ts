@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart/cart.service';
 import { Sale } from '../models/sale';
-import { place } from '../models/place';
-import { eventPlace } from '../models/event';
+import { eventPlace } from '../models/event'; // Fix import statement
 import { EventServiceService } from '../services/event/event-service.service';
 
 @Component({
@@ -12,29 +11,26 @@ import { EventServiceService } from '../services/event/event-service.service';
 })
 export class MycartComponent implements OnInit {
   cart: Sale[] = [];
-  listOfEvents: eventPlace[] = [];
+  listOfEvents: eventPlace[] = []; // Correct model name
 
   constructor(private cartService: CartService, private eventService: EventServiceService) {}
 
   ngOnInit(): void {
     this.cartService.getCart().subscribe(sales => {
-      if (sales)
+      if (sales) {
         this.cart = sales;
+        this.retrieveEventPlaces(); // Fetch eventPlace data
+      }
     });
-    this.getAllEvents();
   }
 
-  getAllEvents() {
-    this.eventService.getBoughtEvents().subscribe({
-      next: (data) => {
-        this.listOfEvents = data;
-  
-        for (let i = 0; this.listOfEvents[i] != null; i++) {
-          this.listOfEvents[i].date = this.listOfEvents[i].date.split("T", 2)[0];
-        }
-      },
-      error: (err) => {},
-      complete: () => {}
+  retrieveEventPlaces(): void {
+    const eventIds = this.cart.map(sale => sale.event_id);
+    this.eventService.getEventPlaces(eventIds).subscribe(eventPlaces => {
+      if (eventPlaces) {
+        this.listOfEvents = eventPlaces;
+      }
     });
   }
+  
 }
