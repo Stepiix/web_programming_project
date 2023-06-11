@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth/auth-service.service';
 import { Router } from '@angular/router';
-import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-register',

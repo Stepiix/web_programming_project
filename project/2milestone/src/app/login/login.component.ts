@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth/auth-service.service';
-import { user } from '../models/user';
 import { Router } from '@angular/router';
 
 @Component({
@@ -31,11 +30,11 @@ export class LoginComponent {
             this.router.navigate(['allevents']);
         })
       }
-    }, (error: any) => {
-      if (error.status === 404)
-        alert('User not found');
-      else  // Other error cases
-        alert('An error occurred during login.');
+      }, (error: any) => {
+        if (error.status == 404)
+          alert('User not found');
+        else  // Other error cases
+          alert('An error occurred during login.');
     })
   }
 
