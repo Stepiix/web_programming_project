@@ -10,6 +10,7 @@
     width: 600px;
     margin: auto;
     padding: 30px 60px;
+    padding-top: 0px;
     border: 4px solid midnightblue;
     border-radius: 20px;
     background-color: rgb(240, 240, 240);
